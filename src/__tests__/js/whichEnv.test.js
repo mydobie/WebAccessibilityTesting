@@ -9,7 +9,7 @@ import {
 
 describe('WhichEnv tests', () => {
   test('IsProd returns false for a non-prod hostname', () => {
-    expect(isProd('https://dev.myURL.com')).toEqual(false);
+    expect(isProd('https://127.0.0.1')).toEqual(false);
   });
 
   test('IsProd returns true for a prod hostname', () => {
@@ -30,29 +30,6 @@ describe('WhichEnv tests', () => {
 
   test('IsDev returns false for non-dev hostname', () => {
     expect(isDev('https://devIamNot.myURL.com')).toEqual(false);
-  });
-
-  test('IsDev returns true for dev hostname', () => {
-    expect(isDev('https://localhost')).toEqual(true);
-    expect(isDev('mydev.com')).toEqual(true);
-    expect(isDev('mydevelopment.com')).toEqual(true);
-  });
-
-  test('IsTest returns false for non-test hostname', () => {
-    expect(isTest('https://localhost')).toEqual(false);
-  });
-
-  test('IsTest returns true for test hostname', () => {
-    expect(isTest('https://test.myURL.com')).toEqual(true);
-  });
-
-  test('IsQa returns false for non-qa hostname', () => {
-    expect(isQa('https://qaIamNot.myURL.com')).toEqual(false);
-  });
-
-  test('IsQa returns true for qa hostname', () => {
-    expect(isQa('https://qat.myURL.com')).toEqual(true);
-    expect(isQa('https://qa.myURL.com')).toEqual(true);
   });
 
   test('IsLocalHost returns true for a localhost', () => {

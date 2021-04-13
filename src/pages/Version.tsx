@@ -18,6 +18,10 @@ const Version = (/* props */) => (
             </span>
           </li>
           <li>
+            <strong>Description: </strong>
+            <span>{process.env.REACT_APP_DESCRIPTION}</span>
+          </li>
+          <li>
             <strong>Version: </strong>
             <span id='appVersionFromPackageJson'>
               {process.env.REACT_APP_VERSION}

@@ -3,11 +3,6 @@
 const environments = [
   { urlpattern: 'localhost', env: 'dev' },
   { urlpattern: '127.0.0.1', env: 'dev' },
-  { urlpattern: 'dev.', env: 'dev' },
-  { urlpattern: 'development.', env: 'dev' },
-  { urlpattern: 'test.', env: 'test' },
-  { urlpattern: 'qat.', env: 'qa' },
-  { urlpattern: 'qa.', env: 'qa' },
 ];
 
 const { hostname } = window.location;
@@ -37,8 +32,6 @@ const isEnv = (envType: string, url?: string): boolean => {
 };
 
 export const isDev = (url?: string): boolean => isEnv('dev', url);
-export const isTest = (url?: string): boolean => isEnv('test', url);
-export const isQa = (url?: string): boolean => isEnv('qa', url);
 
 export const isLocalHost = (url?: string): boolean => {
   const host = url || hostname;

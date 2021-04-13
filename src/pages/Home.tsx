@@ -3,66 +3,61 @@
 
 import React from 'react';
 
-import { Container, Row, Col, Jumbotron } from 'react-bootstrap';
+import { Jumbotron, Row, Col, Card, Button } from 'react-bootstrap';
 
-interface Props {
-  helloMessage?: string;
-}
+interface Props {}
 
-const defaultProps = {
-  helloMessage: 'Hello World!',
-};
+const defaultProps = {};
 
-const Home = (props: Props) => {
-  const { helloMessage } = props;
-  return (
-    <Container>
-      <Row>
-        <Col>
-          <Jumbotron>
-            <h1 className='display-3' id='helloId'>
-              {helloMessage}
-            </h1>
-            <p className='lead'>This is the home page for an application</p>
-          </Jumbotron>
-        </Col>
-      </Row>
-    </Container>
-  );
-};
-
-// interface State {
-//   sampleState: string;
-// }
-
-// class Home extends React.Component<Props, State> {
-//   static defaultProps = { helloMessage: 'Hello world!!!' };
-
-//   constructor(props: Props) {
-//     super(props);
-//     this.state = { sampleState: props.helloMessage };
-//   }
-
-//   render() {
-//     const { helloMessage } = this.props;
-//     const { sampleState } = this.state;
-//     return (
-//       <Container>
-//         <Row>
-//           <Col>
-//             <Jumbotron>
-//               <h1 className='display-3' id='helloId'>
-//                 {helloMessage}
-//               </h1>
-//               <p className='lead'>This is the home page for an application</p>
-//               <p>{sampleState}</p>
-//             </Jumbotron>
-//           </Col>
-//         </Row>
-//       </Container>
-//     );
-//   }
-// }
+const Home = (props: Props) => (
+  <>
+    <Jumbotron>
+      <h1>You Can Do This!</h1>
+      <p>Web Accessibiltiy Testing for Everyone</p>
+      <p>Making testing easier so everyone can participate.</p>
+    </Jumbotron>
+    <Row>
+      <Col>
+        <Card>
+          <Card.Header as='h2'>Tools</Card.Header>
+          <Card.Body>
+            {/* <Card.Title>Tools</Card.Title> */}
+            <Card.Text>
+              There are numerous free tools you can use in a browser to make
+              testing for accessibility easier.
+            </Card.Text>
+            <Button variant='primary'>Tools</Button>
+          </Card.Body>
+        </Card>
+      </Col>
+      <Col>
+        <Card>
+          <Card.Header as='h2'>How To&apos;s</Card.Header>
+          <Card.Body>
+            <Card.Text>
+              Some quick example text to build on the card title and make up the
+              bulk of the card content.
+            </Card.Text>
+            <Button variant='primary'>How to</Button>
+          </Card.Body>
+        </Card>
+      </Col>
+      <Col>
+        <Card>
+          <Card.Header as='h2'>Sample Website</Card.Header>
+          <Card.Body>
+            {/* <Card.Subtitle>Card Subtitle</Card.Subtitle> */}
+            <Card.Text>
+              Sample website to practice your web accessibility testing skills.
+              Errors are clearly marked.
+            </Card.Text>
+            <Button variant='primary'>Sample Site</Button>
+          </Card.Body>
+        </Card>
+      </Col>
+    </Row>
+  </>
+);
 
 Home.defaultProps = defaultProps;
 export default Home;

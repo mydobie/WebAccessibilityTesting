@@ -25,7 +25,6 @@ In order to keep the project organized, the project has the following structure:
 
     - `/src/js/axios.config.js` => Ajax based helper functions
     - `/src/js/helpers.js` => Javascript helpers used across the application
-    - `/src/js/whichEnv.js` => Helper methods to determine what environment the application is running in based in url patterns.
 
   - `/src/pages` => High level components that are called by the router
     - `/src/pages/SAMPLE.jsx` => Sample component that can be used as a template.
