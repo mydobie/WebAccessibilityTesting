@@ -13,7 +13,7 @@ import FourOhFour from './pages/FourOhFour';
 
 const basename = '/';
 
-const routerArray = [
+export const routerArray = [
   {
     path: ROUTES.HOME.path,
     element: <AppTemplate />,

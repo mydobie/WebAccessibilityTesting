@@ -6,7 +6,7 @@ import { Container, Card } from 'react-bootstrap';
 
 import SkipMenu from 'skip-menu-react';
 
-import AppNavBar from './AppNavBar';
+import { Breadcrumbs } from './AppNavBar';
 
 import './scss/index.scss';
 
@@ -32,7 +32,7 @@ const AppTemplate = (): ReactElement => (
   <>
     <SkipMenu theme='bootstrap' alwaysShow={false} useAccessKey />
     <Header />
-    <AppNavBar />
+    <Breadcrumbs />
     <Container>
       <main>
         <Outlet />
