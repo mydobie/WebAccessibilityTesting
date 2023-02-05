@@ -1,57 +1,51 @@
-// Contains routing and any application wide items like headers, footers and navigation
-import React from 'react';
-import { BrowserRouter as Router } from 'react-router-dom'; // Use `HashRouter as Router` when you can't control the URL ... like GitHub pages
-import { Container } from 'react-bootstrap';
-// START FEATURE FLAGS
-// eslint-disable-next-line import/order
-import { loadFeatureFlags } from 'feature_flags';
-import { featureFlagArray } from './feature-flags.config';
-// END FEATURE FLAGS
+import React, { ReactElement } from 'react';
+import {
+  createBrowserRouter,
+  createHashRouter,
+  RouterProvider,
+} from 'react-router-dom'; // Use HashRouter  when you can't control the URL ... like GitHub pages
 
-import AppRoutes from './AppRoutes';
+import AppTemplate from './AppTemplate';
+import ROUTES from './AppRouteNames';
 
-import SetAxios from './components/SetAxios';
+import Home from './pages/Home';
+import FourOhFour from './pages/FourOhFour';
 
-import Header from './components/global/Header';
+const basename = '/';
 
-interface Props {}
+const routerArray = [
+  {
+    path: ROUTES.HOME.path,
+    element: <AppTemplate />,
 
-class App extends React.Component<Props> {
-  constructor(props: Props) {
-    super(props);
-    this.reRenderApp = this.reRenderApp.bind(this);
-  }
+    handle: { label: ROUTES.HOME.label },
+    children: [
+      { path: '', element: <Home /> },
+      {
+        path: ROUTES.SAMPLE.path,
+        handle: { label: ROUTES.SAMPLE.label },
+        children: [
+          {
+            path: '',
+            element: 'SAMPLE SITE',
+          },
+          {
+            path: ROUTES.TABLES.path,
+            element: 'THERE BE TABLES',
+            handle: { label: ROUTES.TABLES.label },
+          },
+        ],
+      },
+      { path: '*', element: <FourOhFour /> },
+    ],
+  },
+];
 
-  async componentDidMount() {
-    // START FEATURE FLAGS
-    // NOTE: featureFlagArray is from feature-flags.config.js file
-    loadFeatureFlags(featureFlagArray, false, this.reRenderApp());
-    // END FEATURE FLAGS
-  }
+const router =
+  process.env.REACT_APP_USE_HASH_ROUTER === 'true'
+    ? createHashRouter(routerArray, { basename })
+    : createBrowserRouter(routerArray, { basename });
 
-  componentWillUnmount() {}
+const App = (): ReactElement => <RouterProvider router={router} />;
 
-  reRenderApp(/* features */) {
-    // NOTE:  You can do an ajax call to send updated feature flags here
-    this.forceUpdate();
-  }
-
-  render() {
-    const basename = '';
-    return (
-      <div>
-        <Router basename={basename}>
-          <SetAxios />
-          <Header />
-
-          <main>
-            <Container>
-              <AppRoutes onFeatureChange={this.reRenderApp} />
-            </Container>
-          </main>
-        </Router>
-      </div>
-    );
-  }
-}
 export default App;

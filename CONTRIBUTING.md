@@ -1,26 +1,36 @@
 # Contributing to the project
 
+## Submitting an issue
+
+All issues should be submitted through the GitHub issue tracker.
+
 ## How to commit changes
 
-This application uses a modified version of GitHub flow. All code moved to a server must be contained in a release. All releases must be made from the master branch. The head of the master branch will contain the latest deployable code. Note that the head of master branch may contain code that is on a test/qa/staging and/or production environment. Master is not tied to an application instance. (test/qa/staging, production)
+This application uses a modified version of GitHub flow. All releases must be made from the main branch. The head of the main branch will contain the latest deployable code.
 
-1. When starting work toward a new release, branch off the master branch or a known release (aka tag) for retrofits.
-1. If there will be multiple persons working or multiple features on the new release, then create branches of the new release branch.
-1. As the last commit on the release branch, change the version in the `package.json` file and run `npm i` to update the `package-lock.json` file. Note: do not tag or create a version yet.
-1. Submit for pull request into the master branch.
-   1. Reviewers should ensure that the version has been updated and does not match an existing release tag
-1. Once approved by at least 2 approvers, merge or squash merge the pull request
-1. Delete the release branch and all "child" branches
-1. Create a release tag in GitHub using the following templates described below.
-1. After Jenkins and/or GitHub Actions has finished, verify that a GitHub release has been created and there is a new corresponding artifact in Artifactory and/or GitHub packages. If not manually create the GitHub release off the master branch and upload the artifact.
+1. Create your own fork of the project.
+1. Submit a pull request for any changes into this project's main branch using this naming pattern: `<Issue number>-<description>`
+1. Once approved the approvers will squash merge the pull request.
+1. After GitHub Actions has finished, approvers will verify that a GitHub release has been created.
+1. Approvers will update the release description in GitHub based on the pull request description.
+
+### Versioning
+
+The version in the `package.json` file updates automatically when merged into the `main` branch.
+
+The new version is determined by the pull request merge commit message:
+
+- If the string "BREAKING CHANGE" or "major" is found anywhere in any of the commit messages or descriptions the major version will be incremented.
+- If the string "feat" or "minor" is found anywhere in any of the commit messages or descriptions the minor version will be incremented.
+- All else, the patch version will be incremented.
+
+See [gh-action-bump-version](https://github.com/phips28/gh-action-bump-version) for more information.
 
 ### Releases
 
-The GitHub releases are used by both developers and business owners, the release notes should be fairly detailed.
+It is necessary to update the release description and notes in GitHub after GitHub actions have been run.
 
-The tag for the release should start with a `v` and then have the version number as specified in the `package.json` file. For example: `v1.1.0`
-
-Release title should contain the version and a short summary description. For example: `Version 1.1.0 - Accessibility fixes`
+Release title should contain the version and a short summary description. For example: `Version 2.1.0 - Accessibility fixes`
 
 The release body contains a description along with lists of items added, removed and modified. For example:
 
@@ -44,21 +54,57 @@ Changes:
 
 ## Testing
 
-A test driven development (TDD) should be used when building react components. This means writing a test for a component before it is built. This will encourage wider code coverage and reduction on the dependance on snapshot tests.
+There are two types of tests for this application: unit and integration tests. Unit tests are written in Jest and test each component of the application in isolation. Integration tests are written in Cypress and test functionality as a user would. Integration tests commonly test multiple components at the same time. If possible, it is advised to work with a product owner when writing integration tests.
 
-For every `.js `or `.jsx` file, there should be a corresponding test file in the directory in the `/src/__tests__` directory. This ensures that if a component is moved to another application, all the tests testing that component can also be easily moved.
+### Unit tests
 
-If at all possible snapshot tests (where results are compared to a previous run's html) should be avoided. While they can be helpful early in development, they should be replaced with more detailed tests later on.
+A test driven development (TDD) should be used when building react components. This means writing a unit test for a component before it is built. This will encourage wider code coverage and reduction on the dependance on snapshot tests.
 
-Text matching tests should be avoided.
+Private methods or components that are only consumed by other components do not need test directly testing those items. Only testing exported components or methods are necessary.
 
-Because of the nature of the Node, Jest, React, Redux and Enzyme environment, a very high level of test coverage (at least 85% lines covered) is expected.
+Tests are written using Jest and React Testing Library and should be saved in the `/src/__tests__` directory.
+
+If at all possible snapshot tests (where results are compared to a previous run's html) should be avoided.
+
+Text matching tests should be avoided, the use of [testIds](https://testing-library.com/docs/queries/bytestid/) is preferred.
+
+Because of the nature of the Node, Jest, React, and Redux (if used) environment, a very high level of test coverage (at least 85% lines covered) is expected.
+
+### Integration tests
+
+The focus of integration tests is to test the functionality of the application as a user would, so covering all use cases is important. Tests are written using Cypress and should be saved in the `/cypress/integration` directory.
 
 ---
+
+---
+
+---
+
+# Code styling
+
+## TypeScript
+
+TypeScript will be used inside of the `src` folder.
+
+### React functional components only
+
+Class based components should not be used. All react components should be functions and use hooks to maintain state.
 
 ## Code formatting
 
 While both Eslint and Prettier enforce strict coding practices, there are numerous code styles that aren't caught by the linters or formatters.
+
+### Typescript
+
+Except for build utility and Cypress testing files, all files should be Typescript.
+
+### Single exported component per file
+
+When writing components, it is important to have only one component exported per file. This avoids having long files.
+
+### Save static variables or functions outside the component
+
+Variables and methods that don't depend on props or state should be saved outside of the component.
 
 ### Naming
 
@@ -68,7 +114,7 @@ All files, class names, function/method, and variable names are camel case. Clas
 
 - GitHub recognized files like README.md, CONTRIBUTING.md, and LICENSE.md. These file names are all capitals.
 - "Magic" folders that are used during testing are named starting and ending with "\_\_"
-- Global static variables (commonly called enums in other languages) are all caps and snake case.
+- Global static variables are all caps and snake case.
 
 ### If statements
 
@@ -169,7 +215,6 @@ const myFunction = (callback) => {
       callback(error);
     });
 };
-
 
 
 YES:
