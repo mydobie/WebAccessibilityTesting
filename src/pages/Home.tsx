@@ -25,6 +25,11 @@ const Home = (): ReactElement => (
         <li>
           <Link to={ROUTES.SAMPLE.path}>Sample site</Link>
         </li>
+        <li>
+          <Link to={`${ROUTES.SAMPLE.path}/${ROUTES.HEADINGS.path}`}>
+            Headings
+          </Link>
+        </li>
       </ul>
     </Col>
   </Row>

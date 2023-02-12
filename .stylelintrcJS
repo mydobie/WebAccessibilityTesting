@@ -6,6 +6,8 @@
     "stylelint-config-styled-components"
   ],
   "rules": {
-    "scss/operator-no-unspaced": null
+    "scss/operator-no-unspaced": null,
+    "scss/operator-no-newline-after": null,
+    "declaration-empty-line-before": null
   }
 }

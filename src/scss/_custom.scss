@@ -7,3 +7,21 @@ or overriding some Bootstrap css.
 NOTE: You can use custom variables stored in the _variables.scss file.
 
 */
+
+.testing-alert-popover-warning {
+  --bs-popover-border-color: #ffecb5;
+  --bs-popover-bg: #fff3cd;
+
+  .popover-header {
+    --bs-popover-header-bg: #ffe7a3;
+  }
+}
+
+.testing-alert-popover-success {
+  --bs-popover-border-color: #badbcc;
+  --bs-popover-bg: #d1e7dd;
+
+  .popover-header {
+    --bs-popover-header-bg: #a6c4b7;
+  }
+}
