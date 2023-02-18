@@ -4,11 +4,33 @@ import { CardChecklist, CheckSquare } from 'react-bootstrap-icons';
 import styled from 'styled-components';
 import { docLink } from '../../js/helpers';
 import ExternalLink from '../../components/ExternalLink';
+import { routerArray } from '../../App';
+import ROUTES from '../../AppRouteNames';
+import { Link } from 'react-router-dom';
 
 export const useHints = () => {
   const [showHints, setHints] = React.useState(false);
   const toggleHints = () => setHints(!showHints);
   return { showHints, toggleHints };
+};
+
+const nextPrevious = (currentRoute: string) => {
+  const sampleSitePages = routerArray[0].children.find(
+    (path) => path.path === ROUTES.SAMPLE.path
+  )?.children;
+
+  const returnValue = { previous: undefined, next: undefined };
+  if (!sampleSitePages || sampleSitePages.length === 0) {
+    return returnValue;
+  }
+  const currentRouteIndex = sampleSitePages.findIndex(
+    (page) => page.path === currentRoute
+  );
+
+  return {
+    previous: sampleSitePages[currentRouteIndex - 1],
+    next: sampleSitePages[currentRouteIndex + 1],
+  };
 };
 
 // ////////////////////////
@@ -55,17 +77,21 @@ type Props = {
   title: string;
   checks?: Array<string | ReactElement>;
   docHeader: string;
+  route: string;
 };
 
 const Template: React.FC<PropsWithChildren<Props>> = ({
   children,
   title,
+  route,
   showHints,
   toggleHints,
   checks = [],
   docHeader = '',
 }) => {
   const [numBugs, setNumBugs] = React.useState(0);
+
+  const { previous, next } = nextPrevious(route);
 
   const onClick = () => {
     toggleHints();
@@ -78,32 +104,51 @@ const Template: React.FC<PropsWithChildren<Props>> = ({
     setNumBugs(counter);
   };
 
-  return (
-    <Row>
-      <Col>
-        <h1>{title}</h1>
-        <Card>
-          <CardBody>
-            <Icon />
-            <Card.Title>Things to check for:</Card.Title>
-            <ul className='list-unstyled'>
-              {checks.map((check, index) => (
-                <ListItem key={index}>{check}</ListItem>
-              ))}
-            </ul>
-            <Button variant='primary' onClick={onClick}>
-              {showHints ? 'Hide' : 'Show'} hints{' '}
-              {showHints ? <Badge bg='secondary'>{numBugs}</Badge> : null}
-            </Button>{' '}
-            <ExternalLink buttonVariant='secondary' href={docLink(docHeader)}>
-              How to test
-            </ExternalLink>
-          </CardBody>
-        </Card>
+  const nextLabel = next?.handle?.label
+    ? `Next - ${next?.handle?.label}`
+    : ROUTES.SAMPLE.label;
+  const prevLabel = previous?.handle?.label
+    ? `Previous - ${previous?.handle?.label}`
+    : ROUTES.SAMPLE.label;
 
-        <div>{children}</div>
-      </Col>
-    </Row>
+  return (
+    <>
+      <Row>
+        <Col>
+          <h1>{title}</h1>
+          <Card>
+            <CardBody>
+              <Icon />
+              <Card.Title>Things to check for:</Card.Title>
+              <ul className='list-unstyled'>
+                {checks.map((check, index) => (
+                  <ListItem key={index}>{check}</ListItem>
+                ))}
+              </ul>
+              <Button variant='primary' onClick={onClick}>
+                {showHints ? 'Hide' : 'Show'} hints{' '}
+                {showHints ? <Badge bg='secondary'>{numBugs}</Badge> : null}
+              </Button>{' '}
+              <ExternalLink buttonVariant='secondary' href={docLink(docHeader)}>
+                How to test
+              </ExternalLink>
+            </CardBody>
+          </Card>
+
+          <div>{children}</div>
+        </Col>
+      </Row>
+      <Row>
+        <Col>
+          <Link to={`../${previous?.path || ''}`}>
+            <Button>{prevLabel}</Button>
+          </Link>{' '}
+          <Link to={`../${next?.path || ''}`}>
+            <Button>{nextLabel}</Button>
+          </Link>
+        </Col>
+      </Row>
+    </>
   );
 };
 

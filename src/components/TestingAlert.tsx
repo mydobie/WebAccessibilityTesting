@@ -6,13 +6,11 @@ import {
 } from 'react-bootstrap-icons';
 import {
   Alert as BSAlert,
-  // Button as BSButton,
   OverlayTrigger,
   Popover as BSPopOver,
 } from 'react-bootstrap';
 
 import styled from 'styled-components';
-// import { useDispatch } from 'react-redux';
 
 const Alert = styled(BSAlert)`
   position: absolute;
@@ -111,7 +109,7 @@ const TestingAlert: React.FC<PropsWithChildren<Props>> = ({
   );
 
   return (
-    <Wrapper show={show} style={style}>
+    <Wrapper show={show} style={{ ...style, minHeight: '55px' }}>
       <Alert variant={variant} $hasPopOver={!!popOver}>
         {popOver ? (
           <OverlayTrigger

@@ -9,8 +9,11 @@ import AppTemplate from './AppTemplate';
 import ROUTES from './AppRouteNames';
 
 import Home from './pages/Home';
+import SampleSiteHome from './pages/sampleSite/Home';
 import Headings from './pages/sampleSite/Headings';
 import Images from './pages/sampleSite/Images';
+import Tables from './pages/sampleSite/Tables';
+import Forms from './pages/sampleSite/Forms';
 import FourOhFour from './pages/FourOhFour';
 
 const basename = '/';
@@ -29,7 +32,7 @@ export const routerArray = [
         children: [
           {
             path: '',
-            element: 'SAMPLE SITE',
+            element: <SampleSiteHome />,
           },
           {
             path: ROUTES.HEADINGS.path,
@@ -40,6 +43,16 @@ export const routerArray = [
             path: ROUTES.IMAGES.path,
             element: <Images />,
             handle: { label: ROUTES.IMAGES.label },
+          },
+          {
+            path: ROUTES.TABLES.path,
+            element: <Tables />,
+            handle: { label: ROUTES.TABLES.label },
+          },
+          {
+            path: ROUTES.FORMS.path,
+            element: <Forms />,
+            handle: { label: ROUTES.FORMS.label },
           },
         ],
       },

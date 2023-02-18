@@ -3,9 +3,10 @@
 
 import React, { ReactElement } from 'react';
 import { Row, Col, Card } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
+import AppNavBar from '../AppNavBar';
 
-import ROUTES from '../AppRouteNames';
+// import ROUTES from '../AppRouteNames';
 
 // *** Main component ***
 const Home = (): ReactElement => (
@@ -21,16 +22,7 @@ const Home = (): ReactElement => (
         This project can be used as template when starting other React/Redux
         projects.
       </p>
-      <ul>
-        <li>
-          <Link to={ROUTES.SAMPLE.path}>Sample site</Link>
-        </li>
-        <li>
-          <Link to={`${ROUTES.SAMPLE.path}/${ROUTES.HEADINGS.path}`}>
-            Headings
-          </Link>
-        </li>
-      </ul>
+      <AppNavBar />
     </Col>
   </Row>
 );

@@ -11,7 +11,7 @@ const NavItem: React.FC<PropsWithChildren<{ to: string; end?: boolean }>> = ({
   end,
   children,
 }) => (
-  <Nav.Item>
+  <Nav.Item as='li'>
     <NavLink
       className={({ isActive }) => `nav-link ${isActive ? 'active' : ''}`}
       to={to}
@@ -22,15 +22,28 @@ const NavItem: React.FC<PropsWithChildren<{ to: string; end?: boolean }>> = ({
   </Nav.Item>
 );
 
-const AppNavBar = (): ReactElement => {
-  const home = routerArray[0];
-  return (
+const AppNavBar = ({
+  parentPath = '',
+  hideParent = false,
+  asList = false,
+}): ReactElement => {
+  const parent =
+    !parentPath || parentPath === ''
+      ? routerArray[0]
+      : routerArray[0].children?.find((path) => path.path === parentPath);
+
+  const className = asList ? 'flex-column' : '';
+  return !parent ? (
+    <></>
+  ) : (
     <nav>
-      <Nav>
-        <NavItem to={home.path} end>
-          {home.handle.label}
-        </NavItem>
-        {home.children.map((mainRoute) =>
+      <Nav className={className} as='ul'>
+        {!hideParent ? (
+          <NavItem to={parent.path} end>
+            {parent.handle?.label}
+          </NavItem>
+        ) : null}
+        {parent.children?.map((mainRoute) =>
           mainRoute.handle ? (
             <NavItem to={mainRoute.path} key={mainRoute.path}>
               {mainRoute.handle.label}

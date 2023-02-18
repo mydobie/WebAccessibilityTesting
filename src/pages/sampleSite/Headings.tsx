@@ -3,6 +3,7 @@ import React, { ReactElement } from 'react';
 import TestingAlert from '../../components/TestingAlert';
 import styled from 'styled-components';
 import Template, { useHints } from './Template';
+import ROUTES from '../../AppRouteNames';
 
 const SubHeading = styled.div`
   margin-left: 50px;
@@ -19,7 +20,8 @@ const Headings = (): ReactElement => {
   return (
     <Template
       showHints={showHints}
-      title='Headings'
+      title={ROUTES.HEADINGS.label}
+      route={ROUTES.HEADINGS.path}
       toggleHints={toggleHints}
       checks={checks}
       docHeader=''
