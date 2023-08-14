@@ -19,11 +19,11 @@ const Images = (): ReactElement => {
     'Images appped via CSS have appropriate alternative text',
   ];
 
-  const iconSize = 70;
+  const iconsize = 70;
 
   const Car = styled.div`
     width: ${4 * iconsize}px;
-    height: ${iconSize}px;
+    height: ${iconsize}px;
     background-image: url(${carImage});
     background-size: contain;
     background-repeat: no-repeat;
@@ -32,7 +32,7 @@ const Images = (): ReactElement => {
 
   const Plane = styled.div`
     width: ${4 * iconsize}px;
-    height: ${iconSize}px;
+    height: ${iconsize}px;
     background-image: url(${planeImage});
     background-size: contain;
     background-repeat: no-repeat;
@@ -41,7 +41,7 @@ const Images = (): ReactElement => {
 
   const Train = styled.div`
     width: ${4 * iconsize}px;
-    height: ${iconSize}px;
+    height: ${iconsize}px;
     background-image: url(${trainImage});
     background-size: contain;
     background-repeat: no-repeat;
@@ -59,13 +59,13 @@ const Images = (): ReactElement => {
     >
       <h2>Images</h2>
       <p>
-        Empty alt <img src={swirlImage} alt='' width={iconSize} />
+        Empty alt <img src={swirlImage} alt='' width={iconsize} />
       </p>
       <p>
-        Proper alt <img src={celebrateImage} alt='celebrate' width={iconSize} />
+        Proper alt <img src={celebrateImage} alt='celebrate' width={iconsize} />
       </p>
       <p>
-        Missing alt <img src={balloonImage} width={iconSize} />
+        Missing alt <img src={balloonImage} width={iconsize} />
       </p>
       <p>
         CSS image aria-label
