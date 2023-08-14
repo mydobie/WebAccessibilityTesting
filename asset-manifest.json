@@ -1,0 +1,20 @@
+{
+  "files": {
+    "main.css": "./static/css/main.bc970778.css",
+    "main.js": "./static/js/main.f0801a68.js",
+    "static/media/GerberaHome.jpg": "./static/media/GerberaHome.95a246b7212e7664bee4.jpg",
+    "static/media/celebrate.png": "./static/media/celebrate.06f4ff28c7e6c10655b4.png",
+    "static/media/balloons.png": "./static/media/balloons.cc3a9a75d016597ae91d.png",
+    "static/media/train.png": "./static/media/train.12700de29a8fdf5063bf.png",
+    "static/media/car.png": "./static/media/car.6a3cb49d1e9717fcf86b.png",
+    "static/media/plane.png": "./static/media/plane.669c52e9c8c85bcbb90f.png",
+    "static/media/swirl.png": "./static/media/swirl.b0de253ded2d8705afb3.png",
+    "index.html": "./index.html",
+    "main.bc970778.css.map": "./static/css/main.bc970778.css.map",
+    "main.f0801a68.js.map": "./static/js/main.f0801a68.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.bc970778.css",
+    "static/js/main.f0801a68.js"
+  ]
+}
