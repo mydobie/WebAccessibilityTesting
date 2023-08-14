@@ -1,0 +1,130 @@
+{
+  "name": "simple-react-redux-app",
+  "homepage": "./",
+  "description": "",
+  "version": "4.0.0",
+  "license": "MIT",
+  "repository": "https://github.com/mydobie/simple-react-redux-app",
+  "engines": {
+    "node": "16 || 18"
+  },
+  "dependencies": {
+    "@reduxjs/toolkit": "^1.9.2",
+    "bootstrap": "^5.2.3",
+    "react": "^18.2.0",
+    "react-bootstrap": "^2.7.0",
+    "react-bootstrap-icons": "^1.10.3",
+    "react-dom": "^18.2.0",
+    "react-redux": "^8.0.5",
+    "react-router": "^6.4.3",
+    "react-router-dom": "^6.8.0",
+    "redux": "^4.2.1",
+    "redux-persist": "^6.0.0",
+    "skip-menu-react": "github:mydobie/skipmenureact#npmbuild1.0.1",
+    "styled-components": "^5.3.6"
+  },
+  "// devDependencies": [],
+  "devDependencies": {
+    "@cypress/instrument-cra": "^1.4.0",
+    "@stylelint/postcss-css-in-js": "^0.38.0",
+    "@testing-library/jest-dom": "^5.16.5",
+    "@testing-library/react": "^13.4.0",
+    "@testing-library/user-event": "^14.4.3",
+    "@types/jest-axe": "^3.5.5",
+    "@types/react-router-dom": "^5.3.3",
+    "@types/redux-mock-store": "^1.0.3",
+    "@types/styled-components": "^5.1.26",
+    "@typescript-eslint/eslint-plugin": "^5.50.0",
+    "@typescript-eslint/parser": "^5.50.0",
+    "axe-core": "^4.6.3",
+    "cypress": "^10.11.0",
+    "cypress-axe": "^1.3.0",
+    "eslint": "^8.33.0",
+    "eslint-config-prettier": "^8.6.0",
+    "eslint-plugin-react": "^7.32.2",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "husky": "^8.0.3",
+    "jest-axe": "^7.0.0",
+    "lint-staged": "^13.1.0",
+    "postcss": "^8.4.21",
+    "prettier": "^2.8.3",
+    "react-scripts": "^5.0.1",
+    "redux-mock-store": "^1.5.4",
+    "sass": "^1.58.0",
+    "stylelint": "^14.16.1",
+    "stylelint-config-prettier": "^9.0.4",
+    "stylelint-config-standard-scss": "^6.1.0",
+    "stylelint-config-styled-components": "^0.1.1",
+    "typescript": "^4.9.5",
+    "uglify-js": "^3.17.4"
+  },
+  "overrides": {
+    "cypress": "$cypress"
+  },
+  "// resolutions": [
+    "Pin a package to a particular version.",
+    "Only use to resolve security advisories",
+    "See https://www.npmjs.com/package/npm-force-resolutions"
+  ],
+  "scripts": {
+    "d": "npm i ",
+    "start": " REACT_APP_GIT_SHA=`git rev-parse --short HEAD` react-scripts start",
+    "// ----------------------------------------------------------1": "",
+    "buildts": "npm run buildVersionsPage && tsc --project tsconfig-build-files.json",
+    "build": "npm run d && npm run test && npm run npmAudit && npm run build:ci",
+    "build:ci": "npm run buildVersionsPage && REACT_APP_GIT_SHA=`git rev-parse --short HEAD` react-scripts build",
+    "build:hash": "REACT_APP_USE_HASH_ROUTER=true npm run build:ci",
+    "test": "react-scripts test --coverage --passWithNoTests --testPathIgnorePatterns /helpers --watchAll=false ",
+    "test:update": "npm run test -- -u",
+    "cypress": "cypress open",
+    "cypress:run": "cypress run",
+    "// ----------------------------------------------------------2": "",
+    "lint": "npm run lint:js && npm run format && npm run lint:css && echo 'No issues found'",
+    "lint:fix": "npm run lint:js:fix && npm run format:fix && npm run lint:css:fix && echo 'All issues addressed'",
+    "lint:js": "eslint src/**/*.{js,jsx,ts,tsx,json} --no-error-on-unmatched-pattern ",
+    "lint:js:fix": "npm run lint:js -- --fix",
+    "format": "prettier --ignore-path ./.eslintignore --check 'src/**/*.{js,jsx,ts,tsx,css,scss,md,json,html}' ",
+    "format:fix": "prettier --ignore-path ./.eslintignore --write 'src/**/*.{js,jsx,ts,tsx,css,scss,md,json,html}' ",
+    "lint:css": "npm run lint:css:css && npm run lint:css:js",
+    "lint:css:fix": "npm run lint:css:css -- --fix && npm run lint:css:js -- --fix",
+    "lint:css:css": "stylelint --ignore-path ./.eslintignore --allow-empty-input './**/*.+(css|scss)'",
+    "lint:css:js": "stylelint --ignore-path ./.eslintignore --config .stylelintrcJS --allow-empty-input './**/*.+(ts|tsx|js|jsx)'",
+    "// ----------------------------------------------------------4": "",
+    "uglify": "uglifyjs ",
+    "checkCoverage": "node ./utils/testCoverage.js",
+    "createTar": "node ./utils/createArchive.js",
+    "npmAudit": "npm audit -audit-level high --omit=dev",
+    "// ----------------------------------------------------------5": "",
+    "prepare": "husky install"
+  },
+  "jest": {
+    "collectCoverageFrom": [
+      "src/**/*.{js,jsx,ts,tsx}",
+      "!src/index.tsx",
+      "!src/__test_fixtures__/**/*.*"
+    ],
+    "coverageReporters": [
+      "html",
+      "json-summary",
+      "text-summary"
+    ],
+    "transformIgnorePatterns": [
+      "node_modules/(?!axios)"
+    ],
+    "moduleNameMapper": {
+      "\\.(css|scss)$": "<rootDir>/src/__mocks__/styleMock.js"
+    }
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
+}
