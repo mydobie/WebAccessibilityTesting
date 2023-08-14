@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { PropsWithChildren, ReactElement } from 'react';
 import { Row, Col, Button, Card as BSCard, Badge } from 'react-bootstrap';
 import { CardChecklist, CheckSquare } from 'react-bootstrap-icons';
@@ -78,6 +79,7 @@ type Props = {
   checks?: Array<string | ReactElement>;
   docHeader: string;
   route: string;
+  bugTotal?: number;
 };
 
 const Template: React.FC<PropsWithChildren<Props>> = ({
@@ -88,6 +90,7 @@ const Template: React.FC<PropsWithChildren<Props>> = ({
   toggleHints,
   checks = [],
   docHeader = '',
+  bugTotal,
 }) => {
   const [numBugs, setNumBugs] = React.useState(0);
 
@@ -95,13 +98,17 @@ const Template: React.FC<PropsWithChildren<Props>> = ({
 
   const onClick = () => {
     toggleHints();
-    let counter = 0;
-    React.Children.forEach(children, function (child: any) {
-      if (child.props.isBug) {
-        counter++;
-      }
-    });
-    setNumBugs(counter);
+    if (bugTotal) {
+      setNumBugs(bugTotal);
+    } else {
+      let counter = 0;
+      React.Children.forEach(children, function (child: any) {
+        if (child.props.isBug) {
+          counter++;
+        }
+      });
+      setNumBugs(counter);
+    }
   };
 
   const nextLabel = next?.handle?.label

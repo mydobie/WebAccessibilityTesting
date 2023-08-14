@@ -1,14 +1,18 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 import React, { ReactElement, PropsWithChildren } from 'react';
 import {
   BugFill,
   CheckCircleFill,
   ExclamationCircle,
+  Plus as BsiPlus,
 } from 'react-bootstrap-icons';
 import {
   Alert as BSAlert,
-  OverlayTrigger,
+  Overlay,
   Popover as BSPopOver,
 } from 'react-bootstrap';
+
+import CloseButton from 'react-bootstrap/CloseButton';
 
 import styled from 'styled-components';
 
@@ -30,6 +34,13 @@ const Button = styled.button`
   border: 1px solid var(--bs-alert-border-color);
   background-color: var(--bs-alert-bg);
   color: var(--bs-alert-color);
+  position: relative;
+`;
+
+const Plus = styled(BsiPlus)`
+  position: absolute;
+  top: 0;
+  right: -2px;
 `;
 
 const Wrapper = styled.div`
@@ -43,14 +54,20 @@ type HintType = {
   isBug?: boolean;
   isCorrect?: boolean;
   isWarning?: boolean;
+  isAdvanced?: boolean;
 };
 
-const hint = ({ isBug, isCorrect, isWarning }: HintType) => {
+const hint = ({ isBug, isCorrect, isWarning, isAdvanced }: HintType) => {
   const size = 20;
 
   if (isBug) {
     return {
-      icon: <BugFill size={size} title='Accessibility bug' />,
+      icon: (
+        <>
+          <BugFill size={size} title='Accessibility bug' />
+          {isAdvanced ? <Plus size={size} title='advanced' /> : null}
+        </>
+      ),
       title: 'Accessibility bug',
       popOverClass: 'testing-alert-popover-warning',
       variant: 'warning',
@@ -66,7 +83,12 @@ const hint = ({ isBug, isCorrect, isWarning }: HintType) => {
   }
   if (isWarning) {
     return {
-      icon: <ExclamationCircle size={size} title='Accessibility warning' />,
+      icon: (
+        <>
+          <ExclamationCircle size={size} title='Accessibility warning' />
+          {isAdvanced ? <Plus size={size} title='advanced' /> : null}
+        </>
+      ),
       title: 'Accessibility warning',
       popOverClass: 'testingAlertPopOverSecondary',
       variant: 'secondary',
@@ -89,9 +111,51 @@ const TestingAlert: React.FC<PropsWithChildren<Props>> = ({
   popOver,
   show,
   id,
+  isAdvanced,
   style,
   children,
 }) => {
+  const [showPopOver, setPopOver] = React.useState(false);
+  const [target, setTarget] = React.useState(null);
+  const headerRef = React.useRef(null);
+  const wrapperRef = React.useRef(null);
+  const popoverRef = React.useRef(null);
+  const buttonRef = React.useRef(null);
+
+  const handleKeyDown = (e: KeyboardEvent) => {
+    if (e.key === 'Escape') {
+      setPopOver(false);
+    }
+    if (e.key === 'Tab' && popoverRef.current) {
+      // @ts-ignore
+      if (!popoverRef.current.contains(document.activeElement)) {
+        setPopOver(false);
+      }
+    }
+  };
+
+  React.useEffect(() => {
+    if (showPopOver) {
+      window.addEventListener('keyup', handleKeyDown);
+      if (headerRef.current !== null) {
+        // @ts-ignore
+        headerRef.current.focus({ preventScroll: true });
+      }
+    }
+
+    if (!showPopOver) {
+      window.removeEventListener('keyup', handleKeyDown);
+      if (buttonRef.current) {
+        // @ts-ignore
+        buttonRef.current.focus();
+      }
+    }
+
+    return () => {
+      window.removeEventListener('keyup', handleKeyDown);
+    };
+  }, [showPopOver]);
+
   if ((!isBug && !isCorrect && !isWarning) || !show) {
     return <div style={style}>{children}</div>;
   }
@@ -99,26 +163,62 @@ const TestingAlert: React.FC<PropsWithChildren<Props>> = ({
     isBug,
     isCorrect,
     isWarning,
+    isAdvanced,
   });
 
-  const popoverComponent = (
-    <Popover className={popOverClass} id={id}>
-      <Popover.Header as='h3'>{title}</Popover.Header>
-      <Popover.Body>{popOver}</Popover.Body>
-    </Popover>
-  );
+  const handleClick = (
+    event: React.MouseEvent<HTMLButtonElement, MouseEvent>
+  ) => {
+    setPopOver(!showPopOver);
+    // @ts-ignore
+    setTarget(event.target);
+  };
 
   return (
-    <Wrapper show={show} style={{ ...style, minHeight: '55px' }}>
+    <Wrapper
+      show={show}
+      style={{ ...style, minHeight: '55px' }}
+      ref={wrapperRef}
+    >
       <Alert variant={variant} $hasPopOver={!!popOver}>
         {popOver ? (
-          <OverlayTrigger
-            trigger='click'
-            placement='top'
-            overlay={popoverComponent}
-          >
-            <Button>{icon}</Button>
-          </OverlayTrigger>
+          <>
+            <Button
+              onClick={(e) => handleClick(e)}
+              ref={buttonRef}
+              aria-controls={id}
+              aria-expanded={showPopOver ? 'true' : 'false'}
+              aria-haspopup='true'
+            >
+              {icon}
+            </Button>
+
+            <Overlay
+              show={showPopOver}
+              target={target}
+              container={wrapperRef}
+              containerPadding={20}
+              placement='top'
+              rootClose
+              onHide={() => setPopOver(!showPopOver)}
+            >
+              <Popover className={popOverClass} id={id}>
+                <div ref={popoverRef}>
+                  <Popover.Header style={{ position: 'relative' }}>
+                    <span ref={headerRef} tabIndex={-1}>
+                      {' '}
+                      {title}
+                    </span>{' '}
+                    <CloseButton
+                      style={{ position: 'absolute', right: '10px' }}
+                      onClick={() => setPopOver(false)}
+                    />
+                  </Popover.Header>
+                  <Popover.Body>{popOver}</Popover.Body>
+                </div>
+              </Popover>
+            </Overlay>
+          </>
         ) : (
           icon
         )}

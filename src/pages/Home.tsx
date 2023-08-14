@@ -10,18 +10,16 @@ import AppNavBar from '../AppNavBar';
 
 // *** Main component ***
 const Home = (): ReactElement => (
-  <Row data-testid='homePageContainer'>
+  <Row>
     <Col>
-      <Card bg='secondary' text='white'>
+      <Card text='white' className='home-intro-card'>
         <Card.Body>
-          <h1>Sample Application </h1>
-          <p>This is the home page for an application</p>
+          <p className='h1'>You Can Do This.</p>
+          <h1 className='h5'>Web Accessibility Testing for Everyone.</h1>
+          <p>Making testing easier so everyone can participate.</p>
         </Card.Body>
       </Card>
-      <p>
-        This project can be used as template when starting other React/Redux
-        projects.
-      </p>
+
       <AppNavBar />
     </Col>
   </Row>

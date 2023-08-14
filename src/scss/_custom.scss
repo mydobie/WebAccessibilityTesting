@@ -25,3 +25,56 @@ NOTE: You can use custom variables stored in the _variables.scss file.
     --bs-popover-header-bg: #a6c4b7;
   }
 }
+
+/* ******* HEADER ************** */
+
+.app-header {
+  --bs-card-border-radius: 0;
+
+  margin-bottom: 10px;
+
+  .card-title {
+    text-align: right;
+  }
+}
+
+.app-footer {
+  --bs-card-border-radius: 0;
+
+  text-align: center;
+  margin-top: 20px;
+}
+
+.home-intro-card {
+  background-color: #000;
+  background-image: url('../images/GerberaHome.jpg');
+  background-position: right bottom;
+  background-repeat: no-repeat;
+  background-size: 55% 100%;
+  border-color: #fff;
+}
+
+.grace-hopper-todo-list {
+  list-style-type: none;
+
+  li {
+    margin-bottom: 10px;
+
+    svg {
+      margin-right: 10px;
+    }
+  }
+}
+
+.breadcrumb {
+  --bs-breadcrumb-padding-x: 20px;
+}
+
+// colors that work on black
+// Gray #757575
+// Pink #FE7192
+
+/*
+https://web.dev/css-marker-pseudo-element/
+
+*/

@@ -14,7 +14,11 @@ import Headings from './pages/sampleSite/Headings';
 import Images from './pages/sampleSite/Images';
 import Tables from './pages/sampleSite/Tables';
 import Forms from './pages/sampleSite/Forms';
+import FormInfo from './pages/sampleSite/FormInfo';
+import FormValidation from './pages/sampleSite/FormValidation';
+import Links from './pages/sampleSite/Links';
 import FourOhFour from './pages/FourOhFour';
+import GraceHopper from './pages/GraceHopper';
 
 const basename = '/';
 
@@ -53,6 +57,32 @@ export const routerArray = [
             path: ROUTES.FORMS.path,
             element: <Forms />,
             handle: { label: ROUTES.FORMS.label },
+          },
+          {
+            path: ROUTES.FORM_INFO.path,
+            element: <FormInfo />,
+            handle: { label: ROUTES.FORM_INFO.label },
+          },
+          {
+            path: ROUTES.FORM_VALIDATION.path,
+            element: <FormValidation />,
+            handle: { label: ROUTES.FORM_VALIDATION.label },
+          },
+          {
+            path: ROUTES.LINKS.path,
+            element: <Links />,
+            handle: { label: ROUTES.LINKS.label },
+          },
+        ],
+      },
+      {
+        path: ROUTES.GRACE_HOPPER_HOME.path,
+        handle: { label: ROUTES.GRACE_HOPPER_HOME.label },
+
+        children: [
+          {
+            path: '',
+            element: <GraceHopper />,
           },
         ],
       },
