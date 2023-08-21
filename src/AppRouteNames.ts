@@ -10,6 +10,10 @@ export default {
   FORM_VALIDATION: { path: 'formvalidation', label: 'Form validation' },
   LINKS: { path: 'links', label: 'Links' },
 
+  //DEMO SITE
+  DEMO: { path: 'demo', label: 'Demo site' },
+  DEMO_IMAGES: { path: 'images', label: 'Images' },
+
   // GRACE HOPPER
   GRACE_HOPPER_HOME: { path: 'gracehopper', label: 'Grace Hopper' },
 };

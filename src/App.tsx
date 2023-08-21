@@ -9,6 +9,7 @@ import AppTemplate from './AppTemplate';
 import ROUTES from './AppRouteNames';
 
 import Home from './pages/Home';
+// SAMPLE SITE
 import SampleSiteHome from './pages/sampleSite/Home';
 import Headings from './pages/sampleSite/Headings';
 import Images from './pages/sampleSite/Images';
@@ -18,6 +19,12 @@ import FormInfo from './pages/sampleSite/FormInfo';
 import FormValidation from './pages/sampleSite/FormValidation';
 import Links from './pages/sampleSite/Links';
 import FourOhFour from './pages/FourOhFour';
+
+// DEMO SITE
+import Demo from './pages/demoSite/Home';
+import DemoImages from './pages/demoSite/Images';
+
+// GRACE HOPPER
 import GraceHopper from './pages/GraceHopper';
 
 const basename = '/';
@@ -39,14 +46,14 @@ export const routerArray = [
             element: <SampleSiteHome />,
           },
           {
-            path: ROUTES.HEADINGS.path,
-            element: <Headings />,
-            handle: { label: ROUTES.HEADINGS.label },
-          },
-          {
             path: ROUTES.IMAGES.path,
             element: <Images />,
             handle: { label: ROUTES.IMAGES.label },
+          },
+          {
+            path: ROUTES.HEADINGS.path,
+            element: <Headings />,
+            handle: { label: ROUTES.HEADINGS.label },
           },
           {
             path: ROUTES.TABLES.path,
@@ -72,6 +79,22 @@ export const routerArray = [
             path: ROUTES.LINKS.path,
             element: <Links />,
             handle: { label: ROUTES.LINKS.label },
+          },
+        ],
+      },
+      {
+        path: ROUTES.DEMO.path,
+        handle: { label: ROUTES.DEMO.label },
+
+        children: [
+          {
+            path: '',
+            element: <Demo />,
+          },
+          {
+            path: ROUTES.DEMO_IMAGES.path,
+            element: <DemoImages />,
+            handle: { label: ROUTES.DEMO_IMAGES.label },
           },
         ],
       },

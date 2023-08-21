@@ -54,18 +54,6 @@ NOTE: You can use custom variables stored in the _variables.scss file.
   border-color: #fff;
 }
 
-.grace-hopper-todo-list {
-  list-style-type: none;
-
-  li {
-    margin-bottom: 10px;
-
-    svg {
-      margin-right: 10px;
-    }
-  }
-}
-
 .breadcrumb {
   --bs-breadcrumb-padding-x: 20px;
 }

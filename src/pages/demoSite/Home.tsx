@@ -8,9 +8,10 @@ import ROUTES from '../../AppRouteNames';
 const Home = (): ReactElement => (
   <Row>
     <Col>
-      <h1>Sample site!</h1>
+      <h1>DEMO site!</h1>
 
-      <AppNavBar asList parentPath={ROUTES.SAMPLE.path} hideParent />
+      <AppNavBar asList parentPath={ROUTES.DEMO.path} hideParent />
+
       <p>TEMP - on order:</p>
       <ul>
         <li>Automated checkers</li>
