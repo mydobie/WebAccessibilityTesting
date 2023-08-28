@@ -30,24 +30,9 @@ const Images = (): ReactElement => {
       toggleHints={toggleHints}
       checks={checks}
       docHeader=''
+      bugTotal={3}
     >
       <h2>Pandas</h2>
-      {/*
-      Items to have:
-
-      XAppropriate alt - img 
-      XAppropriate alt - svg or css
-
-      XMissing alt - image
-
-      XAria hidden OK
-
-    Not appropriate alt - non descriptive
-
-    Not appropriate alt - too long
-
-
-      */}
 
       <h3>About</h3>
 
@@ -55,9 +40,7 @@ const Images = (): ReactElement => {
         <TestingAlert
           isCorrect
           show={showHints}
-          popOver={`Image has appropriate alt text of "Great panda". `}
-          id='pp1'
-          style={{ marginLeft: '50px', marginBottom: '50px' }}
+          popOver={`Image of a single panda has appropriate alt text of "Great panda". `}
         >
           <div style={{ float: 'right' }}>
             {/* href="https://commons.wikimedia.org/wiki/File:Grosser_Panda.JPG" */}
@@ -83,9 +66,7 @@ const Images = (): ReactElement => {
         <TestingAlert
           isCorrect
           show={showHints}
-          popOver={`Image has appropriate alt text of "Bamboo plan" set by the aria-label attribute. `}
-          id='pp1'
-          style={{ marginLeft: '50px', marginBottom: '50px' }}
+          popOver={`Image of bamboo has appropriate alt text of "Bamboo plan" set by the aria-label attribute. `}
         >
           <div style={{ float: 'left' }}>
             <BambooIcon size='100px' /> {/* ARIA -label set */}
@@ -105,9 +86,7 @@ const Images = (): ReactElement => {
         <TestingAlert
           isBug
           show={showHints}
-          popOver={`Image is missing alt text. `}
-          id='pp1'
-          style={{ marginLeft: '50px', marginBottom: '50px' }}
+          popOver={`Image of the panda cub is missing alt text. `}
         >
           <div style={{ float: 'right' }}>
             {/* href='https://commons.wikimedia.org/wiki/File:Chengdu-pandas-d18.jpg' */}
@@ -128,20 +107,26 @@ const Images = (): ReactElement => {
       </div>
       <div className='clearfix'>
         <h3>In the wild</h3>
-        <div style={{ float: 'left', paddingRight: '10px' }}>
-          {/* href="https://commons.wikimedia.org/wiki/File:Giant_Pandas_having_a_snack.jpg" */}
-          <img
-            width='256'
-            alt='Three white and black great bands sit in a vertical row eating plants with really long stems - possibly bamboo.'
-            src='https://upload.wikimedia.org/wikipedia/commons/thumb/6/67/Giant_Pandas_having_a_snack.jpg/256px-Giant_Pandas_having_a_snack.jpg'
-          />
-        </div>
-        <p>
-          In 2006, scientists reported that the number of pandas living in the
-          wild may have been underestimated at about 1,000, but using a new
-          method scientists believe the wild population may be as large as
-          3,000. In 2006, there were 40 panda reserves in China.
-        </p>
+        <TestingAlert
+          isBug
+          show={showHints}
+          popOver={`The alt text for image of 3 pandas is too long.  The entire alt text is read/displayed instead of the image.  This can be very annoying for users.`}
+        >
+          <div style={{ float: 'left', paddingRight: '10px' }}>
+            {/* href="https://commons.wikimedia.org/wiki/File:Giant_Pandas_having_a_snack.jpg" */}
+            <img
+              width='256'
+              alt='Three white and black great bands sit in a vertical row eating plants with really long stems - possibly bamboo.'
+              src='https://upload.wikimedia.org/wikipedia/commons/thumb/6/67/Giant_Pandas_having_a_snack.jpg/256px-Giant_Pandas_having_a_snack.jpg'
+            />
+          </div>
+          <p>
+            In 2006, scientists reported that the number of pandas living in the
+            wild may have been underestimated at about 1,000, but using a new
+            method scientists believe the wild population may be as large as
+            3,000. In 2006, there were 40 panda reserves in China.
+          </p>
+        </TestingAlert>
       </div>
 
       <h3>Learn more</h3>
@@ -149,19 +134,37 @@ const Images = (): ReactElement => {
         There is a lot of information about pandas available on the web.
         Wikipedia is a great place to start:
       </p>
-      <p>
-        <a href='https://en.wikipedia.org/wiki/Giant_panda'>
-          <Wikipedia size={50} aria-label='large W' />
-        </a>
-      </p>
+      <TestingAlert
+        isBug
+        show={showHints}
+        popOver={`The alt doesn't describe the function of the image. The image is the logo for Wikipedia, so the alt text should be set to "Wikipedia".`}
+      >
+        <p>
+          <a href='https://en.wikipedia.org/wiki/Giant_panda'>
+            <Wikipedia size={50} aria-label='large W' />
+          </a>
+        </p>
+      </TestingAlert>
       <div className='text-center'>
-        <PandaIcon size='200px' /> {/* aria hidden */}
+        <TestingAlert
+          isCorrect
+          show={showHints}
+          popOver={`The panda image is decorative and is correctly hidden using the aria-hidden attribute`}
+        >
+          <PandaIcon size='200px' /> {/* aria hidden */}
+        </TestingAlert>
         <hr />
-        <img
-          alt=''
-          src={TextDivider}
-          style={{ display: 'block', width: '100%', height: '75px' }}
-        />
+        <TestingAlert
+          isCorrect
+          show={showHints}
+          popOver={`The section separator and is correctly hidden using an empty alt text.`}
+        >
+          <img
+            alt=''
+            src={TextDivider}
+            style={{ display: 'block', width: '100%', height: '75px' }}
+          />
+        </TestingAlert>
       </div>
 
       <Credit>

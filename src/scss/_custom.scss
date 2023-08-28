@@ -45,6 +45,8 @@ NOTE: You can use custom variables stored in the _variables.scss file.
   margin-top: 20px;
 }
 
+/* ************ HOME PAGE ************ */
+
 .home-intro-card {
   background-color: #000;
   background-image: url('../images/GerberaHome.jpg');
@@ -57,6 +59,8 @@ NOTE: You can use custom variables stored in the _variables.scss file.
 .breadcrumb {
   --bs-breadcrumb-padding-x: 20px;
 }
+
+/* ************ CUSTOM ************** */
 
 // colors that work on black
 // Gray #757575

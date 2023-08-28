@@ -4,7 +4,7 @@ import React, { ReactElement } from 'react';
 import { Outlet } from 'react-router-dom'; // Use `HashRouter as Router` when you can't control the URL ... like GitHub pages
 import { Container, Card } from 'react-bootstrap';
 
-// import SkipMenu from 'skip-menu-react';
+import SkipMenu from 'skip-menu-react';
 
 import { Breadcrumbs } from './AppNavBar';
 
@@ -30,7 +30,7 @@ const Footer = (): ReactElement => (
 
 const AppTemplate = (): ReactElement => (
   <>
-    {/* <SkipMenu theme='bootstrap' alwaysShow={false} useAccessKey /> */}
+    <SkipMenu theme='bootstrap' alwaysShow={false} useAccessKey />
     <Header />
     <Breadcrumbs />
     <Container>

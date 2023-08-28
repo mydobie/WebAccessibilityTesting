@@ -11,6 +11,7 @@
   "dependencies": {
     "@reduxjs/toolkit": "^1.9.2",
     "bootstrap": "^5.2.3",
+    "formik": "^2.4.3",
     "react": "^18.2.0",
     "react-bootstrap": "^2.7.0",
     "react-bootstrap-icons": "^1.10.3",
@@ -21,7 +22,9 @@
     "redux": "^4.2.1",
     "redux-persist": "^6.0.0",
     "skip-menu-react": "github:mydobie/skipmenureact#npmbuild1.0.1",
-    "styled-components": "^5.3.6"
+    "styled-components": "^5.3.6",
+    "uuid": "^9.0.0",
+    "yup": "^1.2.0"
   },
   "// devDependencies": [],
   "devDependencies": {
@@ -34,6 +37,7 @@
     "@types/react-router-dom": "^5.3.3",
     "@types/redux-mock-store": "^1.0.3",
     "@types/styled-components": "^5.1.26",
+    "@types/uuid": "^9.0.2",
     "@typescript-eslint/eslint-plugin": "^5.50.0",
     "@typescript-eslint/parser": "^5.50.0",
     "axe-core": "^4.6.3",

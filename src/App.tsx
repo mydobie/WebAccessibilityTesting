@@ -9,20 +9,26 @@ import AppTemplate from './AppTemplate';
 import ROUTES from './AppRouteNames';
 
 import Home from './pages/Home';
+import FourOhFour from './pages/FourOhFour';
+
 // SAMPLE SITE
 import SampleSiteHome from './pages/sampleSite/Home';
 import Headings from './pages/sampleSite/Headings';
 import Images from './pages/sampleSite/Images';
+import KeyboardNavigation from './pages/sampleSite/KeyboardNav';
+
 import Tables from './pages/sampleSite/Tables';
 import Forms from './pages/sampleSite/Forms';
 import FormInfo from './pages/sampleSite/FormInfo';
 import FormValidation from './pages/sampleSite/FormValidation';
 import Links from './pages/sampleSite/Links';
-import FourOhFour from './pages/FourOhFour';
 
 // DEMO SITE
 import Demo from './pages/demoSite/Home';
+import DemoHeadings from './pages/demoSite/Headings';
 import DemoImages from './pages/demoSite/Images';
+import DemoKeyboardNavigation from './pages/demoSite/KeyboardNav';
+import DemoForms from './pages/demoSite/Forms';
 
 // GRACE HOPPER
 import GraceHopper from './pages/GraceHopper';
@@ -46,14 +52,21 @@ export const routerArray = [
             element: <SampleSiteHome />,
           },
           {
+            path: ROUTES.HEADINGS.path,
+            element: <Headings />,
+            handle: {
+              label: ROUTES.HEADINGS.label,
+            },
+          },
+          {
             path: ROUTES.IMAGES.path,
             element: <Images />,
             handle: { label: ROUTES.IMAGES.label },
           },
           {
-            path: ROUTES.HEADINGS.path,
-            element: <Headings />,
-            handle: { label: ROUTES.HEADINGS.label },
+            path: ROUTES.KEYBOARD.path,
+            element: <KeyboardNavigation />,
+            handle: { label: ROUTES.KEYBOARD.label },
           },
           {
             path: ROUTES.TABLES.path,
@@ -92,9 +105,24 @@ export const routerArray = [
             element: <Demo />,
           },
           {
+            path: ROUTES.DEMO_HEADINGS.path,
+            element: <DemoHeadings />,
+            handle: { label: ROUTES.DEMO_HEADINGS.label },
+          },
+          {
             path: ROUTES.DEMO_IMAGES.path,
             element: <DemoImages />,
             handle: { label: ROUTES.DEMO_IMAGES.label },
+          },
+          {
+            path: ROUTES.DEMO_KEYBOARD.path,
+            element: <DemoKeyboardNavigation />,
+            handle: { label: ROUTES.DEMO_KEYBOARD.label },
+          },
+          {
+            path: ROUTES.DEMO_FORMS.path,
+            element: <DemoForms />,
+            handle: { label: ROUTES.DEMO_FORMS.label },
           },
         ],
       },

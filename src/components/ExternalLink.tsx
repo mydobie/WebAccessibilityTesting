@@ -5,6 +5,7 @@ type Props = {
   href: string;
   buttonVariant?: string;
   className?: string;
+  noLogo?: boolean; // This isn't a good idea - just used to cause an error
 };
 
 const ExternalLink: React.FC<PropsWithChildren<Props>> = ({
@@ -12,6 +13,7 @@ const ExternalLink: React.FC<PropsWithChildren<Props>> = ({
   href,
   buttonVariant,
   className = '',
+  noLogo,
   ...otherProps
 }) => (
   <a
@@ -22,10 +24,11 @@ const ExternalLink: React.FC<PropsWithChildren<Props>> = ({
     target='_blank'
     rel='noopener noreferrer'
     {...otherProps}
-    role='button'
   >
-    {children} <BoxArrowUpRight size={15} />{' '}
-    <span className='visually-hidden'>opens in new window</span>
+    {children}{' '}
+    {noLogo ? null : (
+      <BoxArrowUpRight size={15} aria-label='opens in a new window' />
+    )}
   </a>
 );
 

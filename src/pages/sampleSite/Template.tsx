@@ -141,7 +141,7 @@ const Template: React.FC<PropsWithChildren<Props>> = ({
               </ExternalLink>
             </CardBody>
           </Card>
-
+          <p>HELPER</p>
           <div>{children}</div>
         </Col>
       </Row>
