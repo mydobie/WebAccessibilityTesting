@@ -21,7 +21,6 @@ const Headings = (): ReactElement => {
     <Template
       showHints={showHints}
       title={ROUTES.HEADINGS.label}
-      route={ROUTES.HEADINGS.path}
       toggleHints={toggleHints}
       checks={checks}
       docHeader=''

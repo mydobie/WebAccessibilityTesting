@@ -40,7 +40,6 @@ const KeyboardNavigation = (): ReactElement => {
     <Template
       showHints={showHints}
       title={ROUTES.KEYBOARD.label}
-      route={ROUTES.KEYBOARD.path}
       toggleHints={toggleHints}
       checks={checks}
       docHeader=''

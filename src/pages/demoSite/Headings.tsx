@@ -21,7 +21,6 @@ https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles/landmark_r
     <Template
       showHints={showHints}
       title={ROUTES.DEMO_HEADINGS.label}
-      route={ROUTES.DEMO_HEADINGS.path}
       toggleHints={toggleHints}
       checks={checks}
       docHeader=''

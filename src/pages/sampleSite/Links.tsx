@@ -24,7 +24,6 @@ const Links = (): ReactElement => {
     <Template
       showHints={showHints}
       title={ROUTES.LINKS.label}
-      route={ROUTES.LINKS.path}
       toggleHints={toggleHints}
       checks={checks}
       docHeader=''

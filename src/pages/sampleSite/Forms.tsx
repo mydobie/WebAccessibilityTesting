@@ -1,8 +1,10 @@
 import React, { ReactElement } from 'react';
-import { Form, FloatingLabel, Button, Alert } from 'react-bootstrap';
+import { Form, Button, Row, Col } from 'react-bootstrap';
 import styled from 'styled-components';
 import * as formik from 'formik';
 import * as yup from 'yup';
+import Credit from '../../components/Credit';
+import ExternalLink from '../../components/ExternalLink';
 import TestingAlert from '../../components/TestingAlert';
 import Template, { useHints } from '../sampleSite/Template';
 import ROUTES from '../../AppRouteNames';
@@ -15,22 +17,6 @@ export const checks = [
   'Visual indicators highlight required elements',
   'Error messages or indicators are displayed near the form element',
 ];
-
-/*
-Minnesota 
-
-Automated
-Forms - 
-Zoom - 
-Text - state fair
-Color - 
-Images - black bears
-
-
-Lake superior 
-Jucy Lucy and/or hotdish
-
-*/
 
 const Required = styled.span`
   color: var(--bs-danger);
@@ -45,25 +31,24 @@ const Forms = (): ReactElement => {
   const { Formik } = formik;
 
   const schema = yup.object().shape({
-    firstName: yup.string().required('Please enter a first name'),
-    lastName: yup.string().required('Required!'),
-    email: yup
+    lucy: yup.string().required('Enter the name of a bar or restaurant '),
+    tots: yup
       .string()
-      .email()
-      .required('Please enter a valid email like name@example.com'),
-    favFlower: yup.string().notRequired(),
-    monthly: yup.string().notRequired(),
-    daily: yup.string().notRequired(),
-    comments: yup
+      .required('Enter something')
+      .oneOf(['Ore-Ida'], 'Nope - try again.'),
+    pho: yup
       .string()
-      .required('Please tell us one thing you like about gardening'),
+      .required('Enter the name of the restaurant that has the best pho'),
+    spam: yup.string().notRequired(),
+    lutefisk: yup.string().required('Select if you have ever tried lutefisk'),
+    rice: yup.number().notRequired(),
+    apples: yup.string().required('Select a Minnesota developed apple'),
   });
 
   return (
     <Template
       showHints={showHints}
-      title={ROUTES.DEMO_FORMS.label}
-      route={ROUTES.DEMO_FORMS.path}
+      title={ROUTES.FORMS.label}
       toggleHints={toggleHints}
       checks={checks}
       docHeader=''
@@ -75,13 +60,13 @@ const Forms = (): ReactElement => {
           alert(JSON.stringify(values, null, 2));
         }}
         initialValues={{
-          firstName: '',
-          lastName: '',
-          email: '',
-          favFlower: '',
-          monthly: '',
-          daily: '',
-          comments: '',
+          lucy: '',
+          tots: '',
+          pho: '',
+          spam: '',
+          lutefisk: '',
+          apples: '',
+          rice: 3,
         }}
       >
         {({
@@ -93,195 +78,306 @@ const Forms = (): ReactElement => {
           handleBlur,
         }) => (
           <Form noValidate onSubmit={handleSubmit}>
-            {errors.comments ? (
-              <Alert variant='danger' id='commentsError'>
-                {errors.comments}
-              </Alert>
-            ) : null}
-            <Form.Group className='mb-4' controlId='firstName'>
-              <Form.Label>
-                First name <Required />
-              </Form.Label>
-              <Form.Control
-                type='text'
-                name='firstName'
-                value={values.firstName}
-                onChange={handleChange}
-                onBlur={handleBlur}
-                isValid={touched.firstName && !errors.firstName}
-                isInvalid={!!errors.firstName}
-                aria-invalid={!!errors.firstName}
-                required
-                aria-describedby={
-                  errors.firstName ? 'firstNameError' : undefined
-                }
-              />
-              <Form.Control.Feedback type='invalid' id='firstNameError'>
-                {errors.firstName}
-              </Form.Control.Feedback>
-            </Form.Group>
-            <TestingAlert
-              isWarning
-              show={showHints}
-              popOver={
-                'The error message of "Required!" does not help the user know exactly what is needed to fix the error.'
-              }
-            >
-              <Form.Group className='mb-4' controlId='lastName'>
-                <Form.Label>
-                  Last name <Required />
-                </Form.Label>
-                <Form.Control
-                  type='text'
-                  placeholder=''
-                  name='lastName'
-                  value={values.lastName}
-                  onChange={handleChange}
-                  onBlur={handleBlur}
-                  isValid={touched.lastName && !errors.lastName}
-                  isInvalid={!!errors.lastName}
-                  aria-invalid={!!errors.lastName}
-                  required
-                  aria-describedby={
-                    errors.lastName ? 'lastNameError' : undefined
+            <h1>Minnesota foods</h1>
+            <Row>
+              <Col>
+                <Form.Group className='mb-4' controlId='lucy'>
+                  <TestingAlert isCorrect show={showHints}>
+                    <Form.Label>
+                      Location of your favorite Juicy Lucy <Required />
+                    </Form.Label>
+                    <Form.Control
+                      type='text'
+                      name='lucy'
+                      value={values.lucy}
+                      onChange={handleChange}
+                      onBlur={handleBlur}
+                      isValid={touched.lucy && !errors.lucy}
+                      isInvalid={!!errors.lucy}
+                      aria-invalid={!!errors.lucy}
+                      required
+                      aria-describedby={errors.lucy ? 'lucyError' : undefined}
+                    />
+                    <Form.Control.Feedback type='invalid' id='lucyError'>
+                      {errors.lucy}
+                    </Form.Control.Feedback>
+                  </TestingAlert>
+                </Form.Group>
+              </Col>
+              <Col xs={2}>
+                <a href='https://commons.wikimedia.org/wiki/File:Jucy_Lucy_Cheeseburger.JPG'>
+                  <img
+                    width='128'
+                    alt='Jucy Lucy Cheeseburger'
+                    src='https://upload.wikimedia.org/wikipedia/commons/thumb/8/8d/Jucy_Lucy_Cheeseburger.JPG/128px-Jucy_Lucy_Cheeseburger.JPG'
+                  />
+                </a>
+              </Col>
+            </Row>
+            <Row>
+              <Col>
+                <Form.Group className='mb-4' controlId='tots'>
+                  <Form.Label>
+                    Tater tots used for hot dish <Required />
+                  </Form.Label>
+
+                  <TestingAlert
+                    isBug
+                    show={showHints}
+                    popOver={
+                      'The error message for the "Tater tots" field does not help the user enter information.'
+                    }
+                  >
+                    <Form.Control
+                      type='text'
+                      name='tots'
+                      value={values.tots}
+                      onChange={handleChange}
+                      onBlur={handleBlur}
+                      isValid={touched.tots && !errors.tots}
+                      isInvalid={!!errors.tots}
+                      aria-invalid={!!errors.tots}
+                      required
+                      aria-describedby={errors.tots ? 'totsError' : undefined}
+                    />
+                  </TestingAlert>
+                  <Form.Control.Feedback type='invalid' id='totsError'>
+                    {errors.tots}
+                  </Form.Control.Feedback>
+                </Form.Group>
+              </Col>
+              <Col xs={2}>
+                <a href='https://commons.wikimedia.org/wiki/File:Hotdish.jpg'>
+                  <img
+                    width='128'
+                    alt='Tater Tot Hotdish'
+                    src='https://upload.wikimedia.org/wikipedia/commons/8/80/Hotdish.jpg'
+                  />
+                </a>
+              </Col>
+            </Row>
+
+            <Row>
+              <Col>
+                <Form.Group className='mb-4' controlId='pho'>
+                  <TestingAlert
+                    isBug
+                    show={showHints}
+                    popOver={
+                      'The "Pho" field is required but is not an indicator letting the user know.'
+                    }
+                  >
+                    <Form.Label>Best place for pho</Form.Label>
+                    <Form.Control
+                      type='text'
+                      name='pho'
+                      value={values.pho}
+                      onChange={handleChange}
+                      onBlur={handleBlur}
+                      isValid={touched.pho && !errors.pho}
+                      isInvalid={!!errors.pho}
+                      aria-invalid={!!errors.pho}
+                    />
+                    <Form.Control.Feedback type='invalid' id='phoError'>
+                      {errors.pho}
+                    </Form.Control.Feedback>
+                  </TestingAlert>
+                </Form.Group>
+              </Col>
+              <Col xs={2}>
+                <a href='https://commons.wikimedia.org/wiki/File:Ph%E1%BB%9F_v%E1%BB%8Bt_quay.jpg'>
+                  <img
+                    width='128'
+                    alt='Pho'
+                    src='https://upload.wikimedia.org/wikipedia/commons/1/16/Ph%E1%BB%9F_v%E1%BB%8Bt_quay.jpg'
+                  />
+                </a>
+              </Col>
+            </Row>
+            <Row>
+              <Col>
+                <TestingAlert
+                  isBug
+                  show={showHints}
+                  popOver={
+                    'The "lutefisk" field is not in the expected tab order'
                   }
-                />
-                <Form.Control.Feedback type='invalid' id='lastNameError'>
-                  {errors.lastName}
-                </Form.Control.Feedback>
-              </Form.Group>
-            </TestingAlert>
-
-            <TestingAlert
-              isBug
-              show={showHints}
-              popOver={'The field "email" does not have an attached label.'}
-            >
-              <Form.Group controlId='email' className='mb-4'>
-                <Form.Control
-                  type='email'
-                  placeholder='Enter an email'
-                  name='email'
-                  value={values.email}
-                  onChange={handleChange}
-                  onBlur={handleBlur}
-                  isValid={touched.email && !errors.email}
-                  isInvalid={!!errors.email}
-                  aria-invalid={!!errors.email}
-                  aria-describedby={errors.email ? 'emailError' : undefined}
-                />
-                <Form.Control.Feedback type='invalid' id='emailError'>
-                  {errors.email}
-                </Form.Control.Feedback>
-              </Form.Group>
-            </TestingAlert>
-
-            <TestingAlert
-              isWarning
-              show={showHints}
-              popOver={
-                'There is a label attached to the "Favorite flower" drop-down by using the aria label attribute.  Unfortunately visual users cannot see this label.'
-              }
-            >
-              <div className='mb-4'>
-                {/* <Form.Label htmlFor='favFlower'>Favorite flower</Form.Label> */}
-                <Form.Select
-                  aria-label='Favorite flower'
-                  id='favFlower'
-                  name='favFlower'
-                  value={values.favFlower}
-                  onChange={handleChange}
-                  onBlur={handleBlur}
                 >
-                  <option>Select your favorite flower</option>
-                  <option value='1'>Daisy</option>
-                  <option value='2'>Iris</option>
-                  <option value='3'>Orchid</option>
-                  <option value='4'>Rose</option>
-                  <option value='5'>Tulip</option>
-                </Form.Select>
-              </div>
-            </TestingAlert>
+                  <fieldset className='mb-4'>
+                    <legend style={{ fontSize: 'var(--bs-body-font-size)' }}>
+                      Have you tried lutefisk? <Required />
+                    </legend>
 
-            <fieldset className='mb-4'>
-              <legend>Newsletters</legend>
-              <TestingAlert
-                isBug
-                show={showHints}
-                popOver={'The field "Monthly newsletters" cannot be tabbed to.'}
-              >
-                <Form.Check
-                  type='switch'
-                  id='custom-switch'
-                  label='Monthly newsletters'
-                  tabIndex={-1}
-                  name='monthly'
-                  value={values.monthly}
-                  onChange={handleChange}
-                  onBlur={handleBlur}
-                />
-              </TestingAlert>
-              <TestingAlert
-                isBug
-                show={showHints}
-                popOver={
-                  'When you click on the "Daily how to grow tips" label, it selects the wrong input.'
-                }
-              >
-                <Form.Check
-                  type='switch'
-                  id='custom-switch'
-                  label='Daily "how to grow" tips'
-                  name='daily'
-                  value={values.daily}
-                  onChange={handleChange}
-                  onBlur={handleBlur}
-                />
-              </TestingAlert>
-            </fieldset>
-            <TestingAlert
-              isBug
-              show={showHints}
-              popOver={
-                <>
-                  There are two issues with this field.
-                  <ol>
-                    <li className='mb-2'>
-                      The &quot;Comments&quot; does not describe the field - the
-                      users is suppose to enter on thing they like about
-                      gardening.
-                    </li>
-                    <li>The error text is not close to the field.</li>
-                  </ol>
-                </>
-              }
-            >
-              <FloatingLabel
-                controlId='floatingTextarea2'
-                label={
-                  <>
-                    Comments <Required />
-                  </>
-                }
-                className='mb-4'
-              >
-                <Form.Control
-                  as='textarea'
-                  placeholder='Leave a comment here'
-                  style={{ height: '100px' }}
-                  name='comments'
-                  value={values.comments}
-                  onChange={handleChange}
-                  onBlur={handleBlur}
-                  isValid={touched.comments && !errors.comments}
-                  isInvalid={!!errors.comments}
-                  aria-invalid={!!errors.comments}
-                  aria-describedby={
-                    errors.comments ? 'commentsError' : undefined
+                    <Form.Check
+                      tabIndex={1}
+                      id='lutefish-yes'
+                      label='Yes'
+                      name='lutefisk'
+                      value={'yes'}
+                      onChange={handleChange}
+                      onBlur={handleBlur}
+                      isInvalid={!!errors.lutefisk}
+                      required
+                      type='radio'
+                      aria-invalid={!!errors.lutefisk}
+                      aria-describedby={
+                        errors.lutefisk ? 'lutefiskError' : undefined
+                      }
+                    />
+
+                    <Form.Check
+                      tabIndex={1}
+                      id='lutefish-no'
+                      label='No'
+                      name='lutefisk'
+                      value={'no'}
+                      required
+                      onChange={handleChange}
+                      onBlur={handleBlur}
+                      isInvalid={!!errors.lutefisk}
+                      type='radio'
+                      aria-invalid={!!errors.lutefisk}
+                      aria-describedby={
+                        errors.lutefisk ? 'lutefiskError' : undefined
+                      }
+                    />
+                    <div
+                      className='invalid-feedback'
+                      id='lutefiskError'
+                      style={{ display: errors.lutefisk ? 'block' : 'none' }}
+                    >
+                      {errors.lutefisk}
+                    </div>
+                  </fieldset>
+                </TestingAlert>
+              </Col>
+              <Col xs={2}>
+                <a href='https://commons.wikimedia.org/wiki/File:ForkLutefisk.jpg'>
+                  <img
+                    width='128'
+                    alt='Lutefisk'
+                    src='https://upload.wikimedia.org/wikipedia/commons/thumb/6/62/ForkLutefisk.jpg/128px-ForkLutefisk.jpg'
+                  />
+                </a>
+              </Col>
+            </Row>
+
+            <Row>
+              <Col>
+                <div className='mb-4'>
+                  <TestingAlert isCorrect show={showHints}>
+                    <Form.Label htmlFor='rice'>
+                      Days per week you eat wild rice
+                    </Form.Label>
+                    <Form.Range
+                      id='rice'
+                      name='rice'
+                      value={values.rice}
+                      onChange={handleChange}
+                      onBlur={handleBlur}
+                      min='0'
+                      max='7'
+                    />
+                    <span>Days: {values.rice}</span>
+                  </TestingAlert>
+                </div>
+              </Col>
+              <Col xs={2}>
+                <a href='https://commons.wikimedia.org/wiki/File:Wildricecooked.jpg'>
+                  <img
+                    width='128'
+                    alt='Wild Rice'
+                    src='https://upload.wikimedia.org/wikipedia/commons/thumb/9/92/Wildricecooked.jpg/128px-Wildricecooked.jpg'
+                  />
+                </a>
+              </Col>
+            </Row>
+
+            <Row>
+              <Col>
+                <div className='mb-4'>
+                  <TestingAlert
+                    isBug
+                    show={showHints}
+                    popOver={
+                      'The "Apple" field label is not connected to the corresponding drop-down'
+                    }
+                  >
+                    <Form.Label>
+                      Favorite apple <Required />
+                    </Form.Label>
+                  </TestingAlert>
+                  <Form.Select
+                    aria-label='Favorite apple'
+                    id='apples'
+                    name='apples'
+                    value={values.apples}
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                    isValid={touched.apples && !errors.apples}
+                    isInvalid={!!errors.apples}
+                    aria-invalid={!!errors.apples}
+                    aria-describedby={errors.apples ? 'applesError' : undefined}
+                    required
+                  >
+                    <option value=''>Select an apple</option>
+                    <option value='SweeTango'>SweeTango</option>
+                    <option value='Zestar!'>Zestar!</option>
+                    <option value='Honeycrisp'>Honeycrisp</option>
+                    <option value='StateFair'>State Fair</option>
+                    <option value='Regent'>Regent</option>
+                    <option value='Haralson'>Haralson</option>
+                  </Form.Select>
+                  <Form.Control.Feedback type='invalid' id='applesError'>
+                    {errors.apples}
+                  </Form.Control.Feedback>
+                </div>
+              </Col>
+              <Col xs={2}>
+                <a href='https://commons.wikimedia.org/wiki/File:Honeycrisp-Apple.jpg'>
+                  <img
+                    width='128'
+                    alt='Honeycrisp Apple'
+                    src='https://upload.wikimedia.org/wikipedia/commons/thumb/0/07/Honeycrisp-Apple.jpg/128px-Honeycrisp-Apple.jpg'
+                  />
+                </a>
+              </Col>
+            </Row>
+
+            <Row>
+              <Col>
+                <TestingAlert
+                  isBug
+                  show={showHints}
+                  popOver={
+                    'The "spam" field label disappears once a use enters a value.'
                   }
-                />
-              </FloatingLabel>
-            </TestingAlert>
+                >
+                  <Form.Control
+                    as='textarea'
+                    placeholder='How do you cook spam?'
+                    style={{ height: '100px' }}
+                    name='spam'
+                    value={values.spam}
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                    isValid={touched.spam && !errors.spam}
+                    // isInvalid={!!errors.spam}
+                    className='mb-4'
+                  />
+                </TestingAlert>
+              </Col>
+              <Col xs={2}>
+                <a href='https://www.spam.com/varieties/spam-classic'>
+                  <img
+                    className='img-fluid'
+                    src='https://www.spam.com/wp-content/uploads/2019/09/image-product_spam-classic-12oz-420x420.png'
+                    alt='SPAM Classic'
+                    width='128'
+                  />
+                </a>
+              </Col>
+            </Row>
             <Button type='submit' className='mb-4'>
               Submit form
             </Button>
@@ -289,13 +385,12 @@ const Forms = (): ReactElement => {
         )}
       </Formik>
 
-      {/* <Credit>
-        Information and photographs are from{' '}
-        <ExternalLink href='https://en.wikipedia.org/wiki/Tulip'>
-          Wikipedia
-        </ExternalLink>
-        .
-      </Credit> */}
+      <Credit>
+        Photographs are from{' '}
+        <ExternalLink href='https://en.wikipedia.org/'>Wikipedia</ExternalLink>{' '}
+        except for the can of Spam from{' '}
+        <a href='https://www.spam.com/varieties/spam-classic'>Hormel Foods</a>.
+      </Credit>
     </Template>
   );
 };

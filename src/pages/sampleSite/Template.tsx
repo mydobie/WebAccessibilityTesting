@@ -7,7 +7,7 @@ import { docLink } from '../../js/helpers';
 import ExternalLink from '../../components/ExternalLink';
 import { routerArray } from '../../App';
 import ROUTES from '../../AppRouteNames';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 
 export const useHints = () => {
   const [showHints, setHints] = React.useState(false);
@@ -15,22 +15,26 @@ export const useHints = () => {
   return { showHints, toggleHints };
 };
 
-const nextPrevious = (currentRoute: string) => {
-  const sampleSitePages = routerArray[0].children.find(
-    (path) => path.path === ROUTES.SAMPLE.path
+const useNextPrevious = () => {
+  const { pathname } = useLocation();
+  const routePath = pathname.split('/');
+  const currentRoute = routePath[routePath.length - 1];
+  const parentRoute = routePath[routePath.length - 2];
+
+  const parentArray = routerArray[0].children.find(
+    (path) => path.path === parentRoute
   )?.children;
 
-  const returnValue = { previous: undefined, next: undefined };
-  if (!sampleSitePages || sampleSitePages.length === 0) {
-    return returnValue;
+  if (!parentArray || parentArray.length === 0) {
+    return { previous: undefined, next: undefined };
   }
-  const currentRouteIndex = sampleSitePages.findIndex(
+
+  const currentRouteIndex = parentArray.findIndex(
     (page) => page.path === currentRoute
   );
-
   return {
-    previous: sampleSitePages[currentRouteIndex - 1],
-    next: sampleSitePages[currentRouteIndex + 1],
+    previous: parentArray[currentRouteIndex - 1],
+    next: parentArray[currentRouteIndex + 1],
   };
 };
 
@@ -78,14 +82,12 @@ type Props = {
   title: string;
   checks?: Array<string | ReactElement>;
   docHeader: string;
-  route: string;
   bugTotal?: number;
 };
 
 const Template: React.FC<PropsWithChildren<Props>> = ({
   children,
   title,
-  route,
   showHints,
   toggleHints,
   checks = [],
@@ -94,7 +96,7 @@ const Template: React.FC<PropsWithChildren<Props>> = ({
 }) => {
   const [numBugs, setNumBugs] = React.useState(0);
 
-  const { previous, next } = nextPrevious(route);
+  const { previous, next } = useNextPrevious();
 
   const onClick = () => {
     toggleHints();

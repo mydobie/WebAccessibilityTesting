@@ -26,7 +26,6 @@ const Images = (): ReactElement => {
     <Template
       showHints={showHints}
       title={ROUTES.IMAGES.label}
-      route={ROUTES.IMAGES.path}
       toggleHints={toggleHints}
       checks={checks}
       docHeader=''

@@ -39,7 +39,6 @@ const Forms = (): ReactElement => {
     <Template
       showHints={showHints}
       title={ROUTES.DEMO_FORMS.label}
-      route={ROUTES.DEMO_FORMS.path}
       toggleHints={toggleHints}
       checks={checks}
       docHeader=''

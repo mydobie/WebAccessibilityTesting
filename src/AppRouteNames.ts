@@ -10,6 +10,8 @@ export default {
   FORM_VALIDATION: { path: 'formvalidation', label: 'Form validation' },
   LINKS: { path: 'links', label: 'Links' },
   KEYBOARD: { path: 'keyboard', label: 'Keyboard Navigation' },
+  ZOOM: { path: 'zoom', label: 'Zoom and resize' },
+  COLOR: { path: 'color', label: 'Color contrast' },
 
   //DEMO SITE
   DEMO: { path: 'demo', label: 'Demo site' },
@@ -17,6 +19,8 @@ export default {
   DEMO_KEYBOARD: { path: 'keyboard', label: 'Keyboard Navigation' },
   DEMO_HEADINGS: { path: 'headings', label: 'Headings' },
   DEMO_FORMS: { path: 'forms', label: 'Forms' },
+  DEMO_ZOOM: { path: 'zoom', label: 'Zoom and resize' },
+  DEMO_COLOR: { path: 'color', label: 'Color contrast' },
 
   // GRACE HOPPER
   GRACE_HOPPER_HOME: { path: 'gracehopper', label: 'Grace Hopper' },

@@ -16,9 +16,11 @@ import SampleSiteHome from './pages/sampleSite/Home';
 import Headings from './pages/sampleSite/Headings';
 import Images from './pages/sampleSite/Images';
 import KeyboardNavigation from './pages/sampleSite/KeyboardNav';
+import Forms from './pages/sampleSite/Forms';
+import Zoom from './pages/sampleSite/Zoom';
+import Color from './pages/sampleSite/Color';
 
 import Tables from './pages/sampleSite/Tables';
-import Forms from './pages/sampleSite/Forms';
 import FormInfo from './pages/sampleSite/FormInfo';
 import FormValidation from './pages/sampleSite/FormValidation';
 import Links from './pages/sampleSite/Links';
@@ -29,6 +31,8 @@ import DemoHeadings from './pages/demoSite/Headings';
 import DemoImages from './pages/demoSite/Images';
 import DemoKeyboardNavigation from './pages/demoSite/KeyboardNav';
 import DemoForms from './pages/demoSite/Forms';
+import DemoZoom from './pages/demoSite/Zoom';
+import DemoColor from './pages/demoSite/Color';
 
 // GRACE HOPPER
 import GraceHopper from './pages/GraceHopper';
@@ -79,6 +83,16 @@ export const routerArray = [
             handle: { label: ROUTES.FORMS.label },
           },
           {
+            path: ROUTES.ZOOM.path,
+            element: <Zoom />,
+            handle: { label: ROUTES.ZOOM.label },
+          },
+          {
+            path: ROUTES.COLOR.path,
+            element: <Color />,
+            handle: { label: ROUTES.COLOR.label },
+          },
+          {
             path: ROUTES.FORM_INFO.path,
             element: <FormInfo />,
             handle: { label: ROUTES.FORM_INFO.label },
@@ -123,6 +137,16 @@ export const routerArray = [
             path: ROUTES.DEMO_FORMS.path,
             element: <DemoForms />,
             handle: { label: ROUTES.DEMO_FORMS.label },
+          },
+          {
+            path: ROUTES.DEMO_ZOOM.path,
+            element: <DemoZoom />,
+            handle: { label: ROUTES.DEMO_ZOOM.label },
+          },
+          {
+            path: ROUTES.DEMO_COLOR.path,
+            element: <DemoColor />,
+            handle: { label: ROUTES.DEMO_COLOR.label },
           },
         ],
       },
