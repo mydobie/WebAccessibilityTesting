@@ -1,12 +1,20 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { PropsWithChildren, ReactElement } from 'react';
-import { Row, Col, Button, Card as BSCard, Badge } from 'react-bootstrap';
+import {
+  Row,
+  Col,
+  Button,
+  Card as BSCard,
+  Badge,
+  Alert,
+} from 'react-bootstrap';
 import { CardChecklist, CheckSquare } from 'react-bootstrap-icons';
 import styled from 'styled-components';
 import { docLink } from '../../js/helpers';
 import ExternalLink from '../../components/ExternalLink';
 import { routerArray } from '../../App';
 import ROUTES from '../../AppRouteNames';
+import lightBulb from '../../images/lightBulb.svg';
 import { Link, useLocation } from 'react-router-dom';
 
 export const useHints = () => {
@@ -81,6 +89,7 @@ type Props = {
   showHints: boolean;
   title: string;
   checks?: Array<string | ReactElement>;
+  helper?: ReactElement | string;
   docHeader: string;
   bugTotal?: number;
 };
@@ -93,6 +102,7 @@ const Template: React.FC<PropsWithChildren<Props>> = ({
   checks = [],
   docHeader = '',
   bugTotal,
+  helper,
 }) => {
   const [numBugs, setNumBugs] = React.useState(0);
 
@@ -143,7 +153,17 @@ const Template: React.FC<PropsWithChildren<Props>> = ({
               </ExternalLink>
             </CardBody>
           </Card>
-          <p>HELPER</p>
+          {helper ? (
+            <Alert variant='primary'>
+              <Row>
+                <Col sm='auto' className='.d-none .d-sm-block'>
+                  <img src={lightBulb} alt='Learn more' />
+                </Col>
+                <Col>{helper}</Col>
+              </Row>
+            </Alert>
+          ) : null}
+
           <div>{children}</div>
         </Col>
       </Row>

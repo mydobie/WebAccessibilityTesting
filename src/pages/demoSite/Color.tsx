@@ -10,13 +10,6 @@ import ROUTES from '../../AppRouteNames';
 const Headings = (): ReactElement => {
   const { showHints, toggleHints } = useHints();
 
-  /*
-
-
-https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles/landmark_role
-
-    */
-
   return (
     <Template
       showHints={showHints}
