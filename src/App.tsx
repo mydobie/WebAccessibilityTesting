@@ -20,10 +20,10 @@ import Forms from './pages/sampleSite/Forms';
 import Zoom from './pages/sampleSite/Zoom';
 import Color from './pages/sampleSite/Color';
 
-import Tables from './pages/sampleSite/Tables';
-import FormInfo from './pages/sampleSite/FormInfo';
-import FormValidation from './pages/sampleSite/FormValidation';
-import Links from './pages/sampleSite/Links';
+// import Tables from './pages/sampleSite/Tables';
+// import FormInfo from './pages/sampleSite/FormInfo';
+// import FormValidation from './pages/sampleSite/FormValidation';
+// import Links from './pages/sampleSite/Links';
 
 // DEMO SITE
 import Demo from './pages/demoSite/Home';
@@ -36,6 +36,9 @@ import DemoColor from './pages/demoSite/Color';
 
 // GRACE HOPPER
 import GraceHopper from './pages/GraceHopper';
+
+// TOOLS
+import Tools from './pages/Tools';
 
 const basename = '/';
 
@@ -72,11 +75,11 @@ export const routerArray = [
             element: <KeyboardNavigation />,
             handle: { label: ROUTES.KEYBOARD.label },
           },
-          {
-            path: ROUTES.TABLES.path,
-            element: <Tables />,
-            handle: { label: ROUTES.TABLES.label },
-          },
+          // {
+          //   path: ROUTES.TABLES.path,
+          //   element: <Tables />,
+          //   handle: { label: ROUTES.TABLES.label },
+          // },
           {
             path: ROUTES.FORMS.path,
             element: <Forms />,
@@ -92,21 +95,21 @@ export const routerArray = [
             element: <Color />,
             handle: { label: ROUTES.COLOR.label },
           },
-          {
-            path: ROUTES.FORM_INFO.path,
-            element: <FormInfo />,
-            handle: { label: ROUTES.FORM_INFO.label },
-          },
-          {
-            path: ROUTES.FORM_VALIDATION.path,
-            element: <FormValidation />,
-            handle: { label: ROUTES.FORM_VALIDATION.label },
-          },
-          {
-            path: ROUTES.LINKS.path,
-            element: <Links />,
-            handle: { label: ROUTES.LINKS.label },
-          },
+          // {
+          //   path: ROUTES.FORM_INFO.path,
+          //   element: <FormInfo />,
+          //   handle: { label: ROUTES.FORM_INFO.label },
+          // },
+          // {
+          //   path: ROUTES.FORM_VALIDATION.path,
+          //   element: <FormValidation />,
+          //   handle: { label: ROUTES.FORM_VALIDATION.label },
+          // },
+          // {
+          //   path: ROUTES.LINKS.path,
+          //   element: <Links />,
+          //   handle: { label: ROUTES.LINKS.label },
+          // },
         ],
       },
       {
@@ -158,6 +161,17 @@ export const routerArray = [
           {
             path: '',
             element: <GraceHopper />,
+          },
+        ],
+      },
+      {
+        path: ROUTES.TOOLS.path,
+        handle: { label: ROUTES.TOOLS.label },
+
+        children: [
+          {
+            path: '',
+            element: <Tools />,
           },
         ],
       },

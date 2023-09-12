@@ -12,6 +12,7 @@ import ExternalLink from '../../components/ExternalLink';
 import PandaIcon from '../../images/PandaIcon';
 import BambooIcon from '../../images/BambooIcon';
 import TextDivider from '../../images/noun-divider.png';
+import GraceHopperHandout from '../../docs/GraceHopperHandout';
 
 export const checks = [
   'Images have appropriate alternative text',
@@ -28,7 +29,7 @@ const Images = (): ReactElement => {
       title={ROUTES.IMAGES.label}
       toggleHints={toggleHints}
       checks={checks}
-      docHeader=''
+      docHeader={GraceHopperHandout.sections.images}
       bugTotal={3}
     >
       <h2>Pandas</h2>

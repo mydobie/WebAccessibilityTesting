@@ -23,6 +23,7 @@ import Rose from '../../images/rose.svg';
 
 import ROUTES from '../../AppRouteNames';
 import ExternalLink from '../../components/ExternalLink';
+import GraceHopperHandout from '../../docs/GraceHopperHandout';
 
 const Img = styled.img`
   width: 50px;
@@ -84,8 +85,9 @@ const KeyboardNavigation = (): ReactElement => {
       title={ROUTES.KEYBOARD.label}
       toggleHints={toggleHints}
       checks={checks}
-      docHeader=''
+      docHeader={GraceHopperHandout.sections.keyboard}
       bugTotal={6}
+      sampleRoute={ROUTES.KEYBOARD}
     >
       <h2>Keyboard navigation</h2>
 
@@ -132,7 +134,7 @@ const KeyboardNavigation = (): ReactElement => {
         </li>
       </ul>
 
-      <p>
+      <div>
         <Form.Label htmlFor='favFlower'>Favorite flower</Form.Label>
         <TestingAlert
           isCorrect
@@ -148,7 +150,7 @@ const KeyboardNavigation = (): ReactElement => {
             <option value='5'>Tulip</option>
           </Form.Select>
         </TestingAlert>
-      </p>
+      </div>
 
       <SectionDivider />
       <h3>Next section</h3>
@@ -183,7 +185,7 @@ const KeyboardNavigation = (): ReactElement => {
             eventKey='0'
             id='card0'
             role='region'
-            aria-aria-labelledby='toggle0'
+            aria-labelledby='toggle0'
           >
             <Card.Body>
               <BigImg src={Daisy} alt='Daisies' /> All about daisies.
@@ -204,7 +206,7 @@ const KeyboardNavigation = (): ReactElement => {
             eventKey='1'
             id='card1'
             role='region'
-            aria-aria-labelledby='toggle1'
+            aria-labelledby='toggle1'
           >
             <Card.Body>
               <BigImg src={Iris} alt='Irises' /> All about irises
@@ -225,7 +227,7 @@ const KeyboardNavigation = (): ReactElement => {
             eventKey='2'
             id='card2'
             role='region'
-            aria-aria-labelledby='toggle2'
+            aria-labelledby='toggle2'
           >
             <Card.Body>
               <BigImg src={Orchid} alt='Orchids' /> All about orchids
@@ -242,26 +244,25 @@ const KeyboardNavigation = (): ReactElement => {
           <Card>
             <Card.Body>
               <Card.Title>Daisy</Card.Title>
-              <Card.Text>
-                <p>
-                  Bellis perennis is a perennial herbaceous plant growing to 20
-                  centimetres (8 inches) in height. It has short creeping
-                  rhizomes and rosettes of small rounded or spoon-shaped leaves
-                  that are from 2 to 5 cm (3⁄4–2 in) long and grow flat to the
-                  ground. longer.
-                </p>
-                <p>
-                  <TestingAlert
-                    isBug
-                    show={showHints}
-                    popOver={`While the "more" link correctly has an indicator that it will open in a new window/tab, the text "more" isn't descriptive enough out of context. `}
-                  >
-                    <ExternalLink href='https://en.wikipedia.org/wiki/Bellis_perennis'>
-                      more
-                    </ExternalLink>
-                  </TestingAlert>
-                </p>
-              </Card.Text>
+
+              <p>
+                Bellis perennis is a perennial herbaceous plant growing to 20
+                centimetres (8 inches) in height. It has short creeping rhizomes
+                and rosettes of small rounded or spoon-shaped leaves that are
+                from 2 to 5 cm (3⁄4–2 in) long and grow flat to the ground.
+                longer.
+              </p>
+              <p>
+                <TestingAlert
+                  isBug
+                  show={showHints}
+                  popOver={`While the "more" link correctly has an indicator that it will open in a new window/tab, the text "more" isn't descriptive enough out of context. `}
+                >
+                  <ExternalLink href='https://en.wikipedia.org/wiki/Bellis_perennis'>
+                    more
+                  </ExternalLink>
+                </TestingAlert>
+              </p>
             </Card.Body>
           </Card>
         </Col>
@@ -269,26 +270,25 @@ const KeyboardNavigation = (): ReactElement => {
           <Card>
             <Card.Body>
               <Card.Title>Iris</Card.Title>
-              <Card.Text>
-                <p>
-                  Irises are perennial plants, growing from creeping rhizomes
-                  (rhizomatous irises) or, in drier climates, from bulbs
-                  (bulbous irises). They have long, erect flowering stems which
-                  may be simple or branched, solid or hollow, and flattened or
-                  have a circular cross-section.
-                </p>
-                <p>
-                  <TestingAlert
-                    isBug
-                    show={showHints}
-                    popOver={`The "more" link doesn't look like a link or button.  There is only a slight color change when moused over.  This color change may be missed by some color-blind users.`}
-                  >
-                    <SneakyLink href='https://en.wikipedia.org/wiki/Iris_(plant)'>
-                      more
-                    </SneakyLink>
-                  </TestingAlert>
-                </p>
-              </Card.Text>
+
+              <p>
+                Irises are perennial plants, growing from creeping rhizomes
+                (rhizomatous irises) or, in drier climates, from bulbs (bulbous
+                irises). They have long, erect flowering stems which may be
+                simple or branched, solid or hollow, and flattened or have a
+                circular cross-section.
+              </p>
+              <p>
+                <TestingAlert
+                  isBug
+                  show={showHints}
+                  popOver={`The "more" link doesn't look like a link or button.  There is only a slight color change when moused over.  This color change may be missed by some color-blind users.`}
+                >
+                  <SneakyLink href='https://en.wikipedia.org/wiki/Iris_(plant)'>
+                    more
+                  </SneakyLink>
+                </TestingAlert>
+              </p>
             </Card.Body>
           </Card>
         </Col>
@@ -296,28 +296,27 @@ const KeyboardNavigation = (): ReactElement => {
           <Card>
             <Card.Body>
               <Card.Title>Tulip</Card.Title>
-              <Card.Text>
-                <p>
-                  There are about seventy-five species, and these are divided
-                  among four subgenera. The name "tulip" is thought to be
-                  derived from a Persian word for turban, which it may have been
-                  thought to resemble by those who discovered it.
-                </p>
-                <p>
-                  <TestingAlert
-                    isWarning
-                    show={showHints}
-                    popOver={`The "more" link opens in a new window/tab but there is no indication that it will do this.`}
+
+              <p>
+                There are about seventy-five species, and these are divided
+                among four subgenera. The name "tulip" is thought to be derived
+                from a Persian word for turban, which it may have been thought
+                to resemble by those who discovered it.
+              </p>
+              <p>
+                <TestingAlert
+                  isWarning
+                  show={showHints}
+                  popOver={`The "more" link opens in a new window/tab but there is no indication that it will do this.`}
+                >
+                  <ExternalLink
+                    href='https://en.wikipedia.org/wiki/Tulip'
+                    noLogo
                   >
-                    <ExternalLink
-                      href='https://en.wikipedia.org/wiki/Tulip'
-                      noLogo
-                    >
-                      more
-                    </ExternalLink>
-                  </TestingAlert>
-                </p>
-              </Card.Text>
+                    more
+                  </ExternalLink>
+                </TestingAlert>
+              </p>
             </Card.Body>
           </Card>
         </Col>

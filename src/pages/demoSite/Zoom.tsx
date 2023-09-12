@@ -8,6 +8,7 @@ import Template, { useHints } from '../sampleSite/Template';
 import { checks } from '../sampleSite/Zoom';
 import Iris from '../../images/iris.svg';
 import ROUTES from '../../AppRouteNames';
+import GraceHopperHandout from '../../docs/GraceHopperHandout';
 
 const Card = styled(BSCard)`
   margin-bottom: 20px;
@@ -34,8 +35,9 @@ const Zoom = (): ReactElement => {
       title={ROUTES.DEMO_ZOOM.label}
       toggleHints={toggleHints}
       checks={checks}
-      docHeader=''
+      docHeader={GraceHopperHandout.sections.zoom}
       bugTotal={3}
+      sampleRoute={ROUTES.ZOOM}
     >
       <TestingAlert
         isCorrect

@@ -24,4 +24,7 @@ export default {
 
   // GRACE HOPPER
   GRACE_HOPPER_HOME: { path: 'gracehopper', label: 'Grace Hopper' },
+
+  // TOOLS
+  TOOLS: { path: 'tools', label: 'Tools' },
 };

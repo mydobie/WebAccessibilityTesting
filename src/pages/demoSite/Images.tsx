@@ -13,43 +13,44 @@ import styled from 'styled-components';
 import Template, { useHints } from '../sampleSite/Template';
 import { checks } from '../sampleSite/Images';
 import ROUTES from '../../AppRouteNames';
+import GraceHopperHandout from '../../docs/GraceHopperHandout';
+
+const iconsize = 70;
+
+const Car = styled.span`
+  width: ${iconsize}px;
+  height: ${iconsize}px;
+  background-image: url(${carImage});
+  background-size: contain;
+  background-repeat: no-repeat;
+  display: inline-block;
+`;
+
+const Plane = styled.div`
+  width: ${4 * iconsize}px;
+  height: ${iconsize}px;
+  background-image: url(${planeImage});
+  background-size: contain;
+  background-repeat: no-repeat;
+  display: inline-block;
+`;
+
+const Train = styled.div`
+  width: ${4 * iconsize}px;
+  height: ${iconsize}px;
+  background-image: url(${trainImage});
+  background-size: contain;
+  background-repeat: no-repeat;
+  display: inline-block;
+`;
+
+const Hr = styled.hr`
+  margin-top: 70px;
+  margin-bottom: 70px;
+`;
 
 const Images = (): ReactElement => {
   const { showHints, toggleHints } = useHints();
-
-  const iconsize = 70;
-
-  const Car = styled.div`
-    width: ${iconsize}px;
-    height: ${iconsize}px;
-    background-image: url(${carImage});
-    background-size: contain;
-    background-repeat: no-repeat;
-    display: inline-block;
-  `;
-
-  const Plane = styled.div`
-    width: ${4 * iconsize}px;
-    height: ${iconsize}px;
-    background-image: url(${planeImage});
-    background-size: contain;
-    background-repeat: no-repeat;
-    display: inline-block;
-  `;
-
-  const Train = styled.div`
-    width: ${4 * iconsize}px;
-    height: ${iconsize}px;
-    background-image: url(${trainImage});
-    background-size: contain;
-    background-repeat: no-repeat;
-    display: inline-block;
-  `;
-
-  const Hr = styled.hr`
-    margin-top: 70px;
-    margin-bottom: 70px;
-  `;
 
   return (
     <Template
@@ -57,7 +58,8 @@ const Images = (): ReactElement => {
       title={ROUTES.DEMO_IMAGES.label}
       toggleHints={toggleHints}
       checks={checks}
-      docHeader=''
+      docHeader={GraceHopperHandout.sections.images}
+      sampleRoute={ROUTES.IMAGES}
     >
       <h2>Images</h2>
 

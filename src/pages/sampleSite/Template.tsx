@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { PropsWithChildren, ReactElement } from 'react';
 import {
@@ -16,6 +17,7 @@ import { routerArray } from '../../App';
 import ROUTES from '../../AppRouteNames';
 import lightBulb from '../../images/lightBulb.svg';
 import { Link, useLocation } from 'react-router-dom';
+import Gears from '../../images/noun-gears';
 
 export const useHints = () => {
   const [showHints, setHints] = React.useState(false);
@@ -23,26 +25,55 @@ export const useHints = () => {
   return { showHints, toggleHints };
 };
 
-const useNextPrevious = () => {
+const useIsDemo = () => {
+  const { pathname } = useLocation();
+  const routePath = pathname.split('/');
+  const parentRoute = routePath[routePath.length - 2];
+
+  return parentRoute === ROUTES.DEMO.path;
+};
+
+export const useNextPrevious = () => {
   const { pathname } = useLocation();
   const routePath = pathname.split('/');
   const currentRoute = routePath[routePath.length - 1];
   const parentRoute = routePath[routePath.length - 2];
 
-  const parentArray = routerArray[0].children.find(
+  const parent = routerArray[0].children.find(
     (path) => path.path === parentRoute
-  )?.children;
+  );
+
+  const parentArray = parent?.children;
 
   if (!parentArray || parentArray.length === 0) {
     return { previous: undefined, next: undefined };
   }
 
-  const currentRouteIndex = parentArray.findIndex(
-    (page) => page.path === currentRoute
-  );
+  let currentRouteIndex = -1;
+
+  const current = parentArray.find((page, index) => {
+    if (page.path === currentRoute) {
+      currentRouteIndex = index;
+      return true;
+    }
+    return false;
+  });
+
+  const previous = { ...parentArray[currentRouteIndex - 1] };
+  const next = { ...parentArray[currentRouteIndex + 1] };
+
+  if (!previous.handle) {
+    // @ts-ignore
+    previous.handle = { label: parent.handle.label || '' };
+  }
+  if (!next.handle) {
+    // @ts-ignore
+    next.handle = { label: parent.handle.label || '' };
+  }
   return {
-    previous: parentArray[currentRouteIndex - 1],
-    next: parentArray[currentRouteIndex + 1],
+    previous,
+    next,
+    current,
   };
 };
 
@@ -54,7 +85,7 @@ const Icon = styled(CardChecklist).attrs({ size: 100 })`
   top: var(--bs-card-spacer-y);
 `;
 
-const Card = styled(BSCard)`
+export const Card = styled(BSCard)`
   margin-bottom: 20px;
   background-color: #efe9ed;
 `;
@@ -92,6 +123,10 @@ type Props = {
   helper?: ReactElement | string;
   docHeader: string;
   bugTotal?: number;
+  sampleRoute?: {
+    path: string;
+    label: string;
+  };
 };
 
 const Template: React.FC<PropsWithChildren<Props>> = ({
@@ -103,9 +138,10 @@ const Template: React.FC<PropsWithChildren<Props>> = ({
   docHeader = '',
   bugTotal,
   helper,
+  sampleRoute,
 }) => {
   const [numBugs, setNumBugs] = React.useState(0);
-
+  const isDemo = useIsDemo();
   const { previous, next } = useNextPrevious();
 
   const onClick = () => {
@@ -167,13 +203,25 @@ const Template: React.FC<PropsWithChildren<Props>> = ({
           <div>{children}</div>
         </Col>
       </Row>
+      {isDemo ? (
+        <Alert variant='secondary'>
+          <Gears size='50px' />
+          <Link
+            to={`/${ROUTES.SAMPLE.path}${
+              sampleRoute ? `/${sampleRoute.path}` : ''
+            }`}
+          >
+            Sample site{sampleRoute ? ` - ${sampleRoute.label}` : ''}
+          </Link>
+        </Alert>
+      ) : null}
       <Row>
         <Col>
-          <Link to={`../${previous?.path || ''}`}>
-            <Button>{prevLabel}</Button>
+          <Link to={`../${previous?.path || ''}`} className='btn btn-secondary'>
+            {prevLabel}
           </Link>{' '}
-          <Link to={`../${next?.path || ''}`}>
-            <Button>{nextLabel}</Button>
+          <Link to={`../${next?.path || ''}`} className='btn btn-primary'>
+            {nextLabel}
           </Link>
         </Col>
       </Row>

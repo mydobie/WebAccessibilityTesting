@@ -6,6 +6,7 @@ import ExternalLink from '../../components/ExternalLink';
 import Template, { useHints } from './Template';
 import ROUTES from '../../AppRouteNames';
 import Minnesota from '../../images/noun-minnesota.svg';
+import GraceHopperHandout from '../../docs/GraceHopperHandout';
 
 export const checks = [
   'Heading text describes the content underneath',
@@ -23,7 +24,7 @@ const Headings = (): ReactElement => {
       title={ROUTES.HEADINGS.label}
       toggleHints={toggleHints}
       checks={checks}
-      docHeader=''
+      docHeader={GraceHopperHandout.sections.headings}
       bugTotal={5}
     >
       <Row>
@@ -188,44 +189,43 @@ const Headings = (): ReactElement => {
               >
                 <Card.Title as='h2'>Loon calls</Card.Title>
               </TestingAlert>
-              <Card.Text>
-                <h3 className='h5'>Tremolo</h3>
-                <p>
-                  The tremolo call—sometimes called the laughing call—is
-                  characterized by its short, wavering quality. It often uses
-                  this call to signal distress or alarm caused by territorial
-                  disputes or perceived threats.
-                </p>
-                <audio controls>
-                  <source
-                    src='https://upload.wikimedia.org/wikipedia/commons/e/e4/Common_loon_tremolo.ogg'
-                    type='audio/ogg'
-                  />
-                  Your browser does not support the audio element.
-                </audio>
-                <TestingAlert
-                  isCorrect
-                  show={showHints}
-                  popOver={
-                    'Even though the "Yodel" is not styled as "h3" it is correctly coded as a "h3"'
-                  }
-                >
-                  <h3 className='h5'>Yodel</h3>
-                </TestingAlert>
-                <p>
-                  The yodel is a long and complex call made only by the male. It
-                  is used in the establishment of territorial boundaries and in
-                  territorial confrontations, and the length of the call
-                  corresponds with the loon&apos;s level of aggression.
-                </p>
-                <audio controls>
-                  <source
-                    src='https://upload.wikimedia.org/wikipedia/commons/a/ab/Loon_yodel.ogg'
-                    type='audio/ogg'
-                  />
-                  Your browser does not support the audio element.
-                </audio>
-              </Card.Text>
+
+              <h3 className='h5'>Tremolo</h3>
+              <p>
+                The tremolo call—sometimes called the laughing call—is
+                characterized by its short, wavering quality. It often uses this
+                call to signal distress or alarm caused by territorial disputes
+                or perceived threats.
+              </p>
+              <audio controls>
+                <source
+                  src='https://upload.wikimedia.org/wikipedia/commons/e/e4/Common_loon_tremolo.ogg'
+                  type='audio/ogg'
+                />
+                Your browser does not support the audio element.
+              </audio>
+              <TestingAlert
+                isCorrect
+                show={showHints}
+                popOver={
+                  'Even though the "Yodel" is not styled as "h3" it is correctly coded as a "h3"'
+                }
+              >
+                <h3 className='h5 mt-4'>Yodel</h3>
+              </TestingAlert>
+              <p>
+                The yodel is a long and complex call made only by the male. It
+                is used in the establishment of territorial boundaries and in
+                territorial confrontations, and the length of the call
+                corresponds with the loon&apos;s level of aggression.
+              </p>
+              <audio controls>
+                <source
+                  src='https://upload.wikimedia.org/wikipedia/commons/a/ab/Loon_yodel.ogg'
+                  type='audio/ogg'
+                />
+                Your browser does not support the audio element.
+              </audio>
             </Card.Body>
           </Card>
           <Card role='search'>
@@ -241,21 +241,19 @@ const Headings = (): ReactElement => {
                   State bird
                 </Card.Title>
               </TestingAlert>
-              <Card.Text>
-                In 1961, the Common Loon was designated the state bird of
-                <div className='text-center'>
-                  <img alt='' src={Minnesota} style={{ width: '50%' }} />
-                  <TestingAlert
-                    isBug
-                    show={showHints}
-                    popOver={
-                      'The word "Minnesota" is coded as a header but does not function as one.'
-                    }
-                  >
-                    <h2>Minnesota</h2>
-                  </TestingAlert>
-                </div>
-              </Card.Text>
+              In 1961, the Common Loon was designated the state bird of
+              <div className='text-center'>
+                <img alt='' src={Minnesota} style={{ width: '50%' }} />
+                <TestingAlert
+                  isBug
+                  show={showHints}
+                  popOver={
+                    'The word "Minnesota" is coded as a header but does not function as one.'
+                  }
+                >
+                  <h2>Minnesota</h2>
+                </TestingAlert>
+              </div>
             </Card.Body>
           </Card>
         </Col>

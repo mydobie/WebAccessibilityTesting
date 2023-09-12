@@ -7,6 +7,7 @@ import TestingAlert from '../../components/TestingAlert';
 import Template, { useHints } from '../sampleSite/Template';
 import { checks } from '../sampleSite/Forms';
 import ROUTES from '../../AppRouteNames';
+import GraceHopperHandout from '../../docs/GraceHopperHandout';
 
 const Required = styled.span`
   color: var(--bs-danger);
@@ -41,8 +42,9 @@ const Forms = (): ReactElement => {
       title={ROUTES.DEMO_FORMS.label}
       toggleHints={toggleHints}
       checks={checks}
-      docHeader=''
+      docHeader={GraceHopperHandout.sections.forms}
       bugTotal={5}
+      sampleRoute={ROUTES.FORMS}
     >
       <Formik
         validationSchema={schema}

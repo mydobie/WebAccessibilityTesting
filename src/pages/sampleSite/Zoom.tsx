@@ -8,6 +8,7 @@ import Template, { useHints } from './Template';
 import ROUTES from '../../AppRouteNames';
 import northShore from '../../images/northShore.png';
 import wordText from '../../images/pictograph-text.png';
+import GraceHopperHandout from '../../docs/GraceHopperHandout';
 
 export const checks = [
   'No scrolling is required when screen is 320px wide.  All content is readable.',
@@ -30,7 +31,7 @@ const Zoom = (): ReactElement => {
       title={ROUTES.ZOOM.label}
       toggleHints={toggleHints}
       checks={checks}
-      docHeader=''
+      docHeader={GraceHopperHandout.sections.zoom}
       bugTotal={3}
     >
       <h1>Gichigami (Lake Superior)</h1>
@@ -108,7 +109,7 @@ const Zoom = (): ReactElement => {
       </TestingAlert>
       <div style={{ minWidth: '900px' }}>
         <h2>History</h2>
-        <p className='clearfix'>
+        <div className='clearfix'>
           <div className={'float-start pe-3'}>
             <img
               width='256'
@@ -144,7 +145,7 @@ const Zoom = (): ReactElement => {
             Ste. Marie in 1662. By the mid-18th century, the Ojibwe occupied all
             of Lake Superior&apos;s shores.
           </TestingAlert>
-        </p>
+        </div>
       </div>
       <Credit>
         Information and photographs are from Wikipeida{' '}

@@ -8,6 +8,7 @@ import ExternalLink from '../../components/ExternalLink';
 import TestingAlert from '../../components/TestingAlert';
 import Template, { useHints } from '../sampleSite/Template';
 import ROUTES from '../../AppRouteNames';
+import GraceHopperHandout from '../../docs/GraceHopperHandout';
 
 export const checks = [
   'Can navigate to and interact with form element',
@@ -51,7 +52,7 @@ const Forms = (): ReactElement => {
       title={ROUTES.FORMS.label}
       toggleHints={toggleHints}
       checks={checks}
-      docHeader=''
+      docHeader={GraceHopperHandout.sections.forms}
       bugTotal={5}
     >
       <Formik

@@ -11,6 +11,7 @@ import OrchidIcon from '../../images/noun-orchid.png';
 
 import ROUTES from '../../AppRouteNames';
 import ExternalLink from '../../components/ExternalLink';
+import GraceHopperHandout from '../../docs/GraceHopperHandout';
 
 export const checks = [
   'You can get to and activate all interactive items with the keyboard',
@@ -42,7 +43,7 @@ const KeyboardNavigation = (): ReactElement => {
       title={ROUTES.KEYBOARD.label}
       toggleHints={toggleHints}
       checks={checks}
-      docHeader=''
+      docHeader={GraceHopperHandout.sections.keyboard}
       bugTotal={7}
     >
       <h2>Showy Lady Slipper</h2>

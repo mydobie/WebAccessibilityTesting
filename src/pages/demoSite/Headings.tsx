@@ -6,16 +6,10 @@ import ExternalLink from '../../components/ExternalLink';
 import Template, { useHints } from '../sampleSite/Template';
 import { checks } from '../sampleSite/Headings';
 import ROUTES from '../../AppRouteNames';
+import GraceHopperHandout from '../../docs/GraceHopperHandout';
 
 const Headings = (): ReactElement => {
   const { showHints, toggleHints } = useHints();
-
-  /*
-
-
-https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles/landmark_role
-
-    */
 
   return (
     <Template
@@ -23,8 +17,9 @@ https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles/landmark_r
       title={ROUTES.DEMO_HEADINGS.label}
       toggleHints={toggleHints}
       checks={checks}
-      docHeader=''
+      docHeader={GraceHopperHandout.sections.headings}
       bugTotal={5}
+      sampleRoute={ROUTES.HEADINGS}
     >
       <Row>
         <Col>
@@ -134,32 +129,34 @@ https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles/landmark_r
         <Col xs={4}>
           <Card role='search' style={{ marginBottom: '20px' }}>
             <Card.Body>
-              <Form
-                action='https://www.dutchbulbs.com/search'
-                method='get'
-                name='search'
-                aria-role='search'
-              >
-                <TestingAlert
-                  isCorrect
-                  show={showHints}
-                  popOver={
-                    'The search section is correctly marked as a "search" landmark.'
-                  }
+              <div>
+                <Form
+                  action='https://www.dutchbulbs.com/search'
+                  method='get'
+                  name='search'
+                  role='search'
                 >
-                  <h2 className='h5'>Search DutchBulbs.com</h2>
-                </TestingAlert>
-                <InputGroup>
-                  <Form.Control
-                    placeholder='Item Number of Keywords'
-                    aria-label='Search'
-                    name='keywrod'
-                  />
-                  <Button variant='primary' type='submit'>
-                    Search
-                  </Button>
-                </InputGroup>
-              </Form>
+                  <TestingAlert
+                    isCorrect
+                    show={showHints}
+                    popOver={
+                      'The search section is correctly marked as a "search" landmark.'
+                    }
+                  >
+                    <h2 className='h5'>Search DutchBulbs.com</h2>
+                  </TestingAlert>
+                  <InputGroup>
+                    <Form.Control
+                      placeholder='Item Number of Keywords'
+                      aria-label='Search'
+                      name='keywrod'
+                    />
+                    <Button variant='primary' type='submit'>
+                      Search
+                    </Button>
+                  </InputGroup>
+                </Form>
+              </div>
             </Card.Body>
           </Card>
         </Col>
