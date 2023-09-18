@@ -15,6 +15,7 @@ export const checks = [
   'Page content makes sense without color',
   'There is at least a 3 : 1 contrast ratio for larger text',
   'There is at least 4.5 : 1 contrast ratio for smaller text',
+  'There is at least a 3 : 1 contrast ration or other visual indicator between states',
 ];
 
 const ResetLinkColor = styled.div`

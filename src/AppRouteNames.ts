@@ -12,9 +12,11 @@ export default {
   KEYBOARD: { path: 'keyboard', label: 'Keyboard Navigation' },
   ZOOM: { path: 'zoom', label: 'Zoom and resize' },
   COLOR: { path: 'color', label: 'Color contrast' },
+  AUTO: { path: 'auto', label: 'Automatic checkers' },
 
   //DEMO SITE
   DEMO: { path: 'demo', label: 'Demo site' },
+  DEMO_AUTO: { path: 'auto', label: 'Automatic checkers' },
   DEMO_IMAGES: { path: 'images', label: 'Images' },
   DEMO_KEYBOARD: { path: 'keyboard', label: 'Keyboard Navigation' },
   DEMO_HEADINGS: { path: 'headings', label: 'Headings' },

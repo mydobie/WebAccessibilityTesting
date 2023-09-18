@@ -13,6 +13,7 @@ import FourOhFour from './pages/FourOhFour';
 
 // SAMPLE SITE
 import SampleSiteHome from './pages/sampleSite/Home';
+import AutoCheckers from './pages/sampleSite/AutoCheckers';
 import Headings from './pages/sampleSite/Headings';
 import Images from './pages/sampleSite/Images';
 import KeyboardNavigation from './pages/sampleSite/KeyboardNav';
@@ -27,6 +28,7 @@ import Color from './pages/sampleSite/Color';
 
 // DEMO SITE
 import Demo from './pages/demoSite/Home';
+import DemoAutoCheckers from './pages/demoSite/AutoCheckers';
 import DemoHeadings from './pages/demoSite/Headings';
 import DemoImages from './pages/demoSite/Images';
 import DemoKeyboardNavigation from './pages/demoSite/KeyboardNav';
@@ -57,6 +59,13 @@ export const routerArray = [
           {
             path: '',
             element: <SampleSiteHome />,
+          },
+          {
+            path: ROUTES.AUTO.path,
+            element: <AutoCheckers />,
+            handle: {
+              label: ROUTES.AUTO.label,
+            },
           },
           {
             path: ROUTES.HEADINGS.path,
@@ -120,6 +129,11 @@ export const routerArray = [
           {
             path: '',
             element: <Demo />,
+          },
+          {
+            path: ROUTES.DEMO_AUTO.path,
+            element: <DemoAutoCheckers />,
+            handle: { label: ROUTES.DEMO_AUTO.label },
           },
           {
             path: ROUTES.DEMO_HEADINGS.path,

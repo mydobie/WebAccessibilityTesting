@@ -127,6 +127,7 @@ type Props = {
     path: string;
     label: string;
   };
+  noHints?: boolean;
 };
 
 const Template: React.FC<PropsWithChildren<Props>> = ({
@@ -139,6 +140,7 @@ const Template: React.FC<PropsWithChildren<Props>> = ({
   bugTotal,
   helper,
   sampleRoute,
+  noHints,
 }) => {
   const [numBugs, setNumBugs] = React.useState(0);
   const isDemo = useIsDemo();
@@ -180,10 +182,15 @@ const Template: React.FC<PropsWithChildren<Props>> = ({
                   <ListItem key={index}>{check}</ListItem>
                 ))}
               </ul>
-              <Button variant='primary' onClick={onClick}>
-                {showHints ? 'Hide' : 'Show'} hints{' '}
-                {showHints ? <Badge bg='secondary'>{numBugs}</Badge> : null}
-              </Button>{' '}
+              {noHints ? null : (
+                <>
+                  <Button variant='primary' onClick={onClick}>
+                    {showHints ? 'Hide' : 'Show'} hints{' '}
+                    {showHints ? <Badge bg='secondary'>{numBugs}</Badge> : null}
+                  </Button>{' '}
+                </>
+              )}
+
               <ExternalLink buttonVariant='secondary' href={docLink(docHeader)}>
                 How to test
               </ExternalLink>

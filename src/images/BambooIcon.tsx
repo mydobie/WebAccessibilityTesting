@@ -7,7 +7,7 @@ const BambooIcon = ({ size = '512pt' }: { size?: string | number }) => (
     version='1.1'
     viewBox='0 0 512 512'
     xmlns='http://www.w3.org/2000/svg'
-    aria-label='Bamboo plant'
+    aria-label='wild carrot'
   >
     <g fill='#007335' fillRule='evenodd'>
       <path d='m261.2 264.32c12.488-2.082 24.977-4.1641 37.465-6.2422 4.1641 43.707 16.652 93.66 20.812 114.47 2.082 6.2422 0 8.3242-6.2422 8.3242-10.406 2.082-20.812 4.1641-33.301 2.082-6.2422-39.543-12.488-79.09-18.73-118.63z' />
