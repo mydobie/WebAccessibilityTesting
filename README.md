@@ -143,4 +143,4 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 ---
 
 Based on template version 3.1.0
-Based on template version 1.0.1
+Based on template version 2.0.1
