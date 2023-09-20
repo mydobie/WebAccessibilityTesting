@@ -12,6 +12,8 @@ import {
   Popover as BSPopOver,
 } from 'react-bootstrap';
 
+import { v4 as uuidv4 } from 'uuid';
+
 import CloseButton from 'react-bootstrap/CloseButton';
 
 import styled from 'styled-components';
@@ -100,8 +102,9 @@ const hint = ({ isBug, isCorrect, isWarning, isAdvanced }: HintType) => {
 type Props = HintType & {
   popOver?: ReactElement | string;
   show?: boolean;
-  id: string;
+  id?: string;
   style?: React.CSSProperties;
+  placement?: 'top' | 'bottom';
 };
 
 const TestingAlert: React.FC<PropsWithChildren<Props>> = ({
@@ -114,6 +117,7 @@ const TestingAlert: React.FC<PropsWithChildren<Props>> = ({
   isAdvanced,
   style,
   children,
+  placement = 'top',
 }) => {
   const [showPopOver, setPopOver] = React.useState(false);
   const [target, setTarget] = React.useState(null);
@@ -174,6 +178,8 @@ const TestingAlert: React.FC<PropsWithChildren<Props>> = ({
     setTarget(event.target);
   };
 
+  const popoverId = id ? id : 'a' + uuidv4();
+
   return (
     <Wrapper
       show={show}
@@ -186,7 +192,7 @@ const TestingAlert: React.FC<PropsWithChildren<Props>> = ({
             <Button
               onClick={(e) => handleClick(e)}
               ref={buttonRef}
-              aria-controls={id}
+              aria-controls={popoverId}
               aria-expanded={showPopOver ? 'true' : 'false'}
               aria-haspopup='true'
             >
@@ -198,11 +204,11 @@ const TestingAlert: React.FC<PropsWithChildren<Props>> = ({
               target={target}
               container={wrapperRef}
               containerPadding={20}
-              placement='top'
+              placement={placement}
               rootClose
               onHide={() => setPopOver(!showPopOver)}
             >
-              <Popover className={popOverClass} id={id}>
+              <Popover className={popOverClass} id={popoverId}>
                 <div ref={popoverRef}>
                   <Popover.Header style={{ position: 'relative' }}>
                     <span ref={headerRef} tabIndex={-1}>

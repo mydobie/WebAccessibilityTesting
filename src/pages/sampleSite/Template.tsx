@@ -1,13 +1,23 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { PropsWithChildren, ReactElement } from 'react';
-import { Row, Col, Button, Card as BSCard, Badge } from 'react-bootstrap';
+import {
+  Row,
+  Col,
+  Button,
+  Card as BSCard,
+  Badge,
+  Alert,
+} from 'react-bootstrap';
 import { CardChecklist, CheckSquare } from 'react-bootstrap-icons';
 import styled from 'styled-components';
 import { docLink } from '../../js/helpers';
 import ExternalLink from '../../components/ExternalLink';
 import { routerArray } from '../../App';
 import ROUTES from '../../AppRouteNames';
-import { Link } from 'react-router-dom';
+import lightBulb from '../../images/lightBulb.svg';
+import { Link, useLocation } from 'react-router-dom';
+import Gears from '../../images/noun-gears';
 
 export const useHints = () => {
   const [showHints, setHints] = React.useState(false);
@@ -15,22 +25,55 @@ export const useHints = () => {
   return { showHints, toggleHints };
 };
 
-const nextPrevious = (currentRoute: string) => {
-  const sampleSitePages = routerArray[0].children.find(
-    (path) => path.path === ROUTES.SAMPLE.path
-  )?.children;
+const useIsDemo = () => {
+  const { pathname } = useLocation();
+  const routePath = pathname.split('/');
+  const parentRoute = routePath[routePath.length - 2];
 
-  const returnValue = { previous: undefined, next: undefined };
-  if (!sampleSitePages || sampleSitePages.length === 0) {
-    return returnValue;
-  }
-  const currentRouteIndex = sampleSitePages.findIndex(
-    (page) => page.path === currentRoute
+  return parentRoute === ROUTES.DEMO.path;
+};
+
+export const useNextPrevious = () => {
+  const { pathname } = useLocation();
+  const routePath = pathname.split('/');
+  const currentRoute = routePath[routePath.length - 1];
+  const parentRoute = routePath[routePath.length - 2];
+
+  const parent = routerArray[0].children.find(
+    (path) => path.path === parentRoute
   );
 
+  const parentArray = parent?.children;
+
+  if (!parentArray || parentArray.length === 0) {
+    return { previous: undefined, next: undefined };
+  }
+
+  let currentRouteIndex = -1;
+
+  const current = parentArray.find((page, index) => {
+    if (page.path === currentRoute) {
+      currentRouteIndex = index;
+      return true;
+    }
+    return false;
+  });
+
+  const previous = { ...parentArray[currentRouteIndex - 1] };
+  const next = { ...parentArray[currentRouteIndex + 1] };
+
+  if (!previous.handle) {
+    // @ts-ignore
+    previous.handle = { label: parent.handle.label || '' };
+  }
+  if (!next.handle) {
+    // @ts-ignore
+    next.handle = { label: parent.handle.label || '' };
+  }
   return {
-    previous: sampleSitePages[currentRouteIndex - 1],
-    next: sampleSitePages[currentRouteIndex + 1],
+    previous,
+    next,
+    current,
   };
 };
 
@@ -42,7 +85,7 @@ const Icon = styled(CardChecklist).attrs({ size: 100 })`
   top: var(--bs-card-spacer-y);
 `;
 
-const Card = styled(BSCard)`
+export const Card = styled(BSCard)`
   margin-bottom: 20px;
   background-color: #efe9ed;
 `;
@@ -77,24 +120,31 @@ type Props = {
   showHints: boolean;
   title: string;
   checks?: Array<string | ReactElement>;
+  helper?: ReactElement | string;
   docHeader: string;
-  route: string;
   bugTotal?: number;
+  sampleRoute?: {
+    path: string;
+    label: string;
+  };
+  noHints?: boolean;
 };
 
 const Template: React.FC<PropsWithChildren<Props>> = ({
   children,
   title,
-  route,
   showHints,
   toggleHints,
   checks = [],
   docHeader = '',
   bugTotal,
+  helper,
+  sampleRoute,
+  noHints,
 }) => {
   const [numBugs, setNumBugs] = React.useState(0);
-
-  const { previous, next } = nextPrevious(route);
+  const isDemo = useIsDemo();
+  const { previous, next } = useNextPrevious();
 
   const onClick = () => {
     toggleHints();
@@ -132,26 +182,53 @@ const Template: React.FC<PropsWithChildren<Props>> = ({
                   <ListItem key={index}>{check}</ListItem>
                 ))}
               </ul>
-              <Button variant='primary' onClick={onClick}>
-                {showHints ? 'Hide' : 'Show'} hints{' '}
-                {showHints ? <Badge bg='secondary'>{numBugs}</Badge> : null}
-              </Button>{' '}
+              {noHints ? null : (
+                <>
+                  <Button variant='primary' onClick={onClick}>
+                    {showHints ? 'Hide' : 'Show'} hints{' '}
+                    {showHints ? <Badge bg='secondary'>{numBugs}</Badge> : null}
+                  </Button>{' '}
+                </>
+              )}
+
               <ExternalLink buttonVariant='secondary' href={docLink(docHeader)}>
                 How to test
               </ExternalLink>
             </CardBody>
           </Card>
+          {helper ? (
+            <Alert variant='primary'>
+              <Row>
+                <Col sm='auto' className='.d-none .d-sm-block'>
+                  <img src={lightBulb} alt='Learn more' />
+                </Col>
+                <Col>{helper}</Col>
+              </Row>
+            </Alert>
+          ) : null}
 
           <div>{children}</div>
         </Col>
       </Row>
+      {isDemo ? (
+        <Alert variant='secondary'>
+          <Gears size='50px' />
+          <Link
+            to={`/${ROUTES.SAMPLE.path}${
+              sampleRoute ? `/${sampleRoute.path}` : ''
+            }`}
+          >
+            Sample site{sampleRoute ? ` - ${sampleRoute.label}` : ''}
+          </Link>
+        </Alert>
+      ) : null}
       <Row>
         <Col>
-          <Link to={`../${previous?.path || ''}`}>
-            <Button>{prevLabel}</Button>
+          <Link to={`../${previous?.path || ''}`} className='btn btn-secondary'>
+            {prevLabel}
           </Link>{' '}
-          <Link to={`../${next?.path || ''}`}>
-            <Button>{nextLabel}</Button>
+          <Link to={`../${next?.path || ''}`} className='btn btn-primary'>
+            {nextLabel}
           </Link>
         </Col>
       </Row>

@@ -24,7 +24,6 @@ const Forms = (): ReactElement => {
     <Template
       showHints={showHints}
       title={ROUTES.FORM_VALIDATION.label}
-      route={ROUTES.FORM_VALIDATION.path}
       toggleHints={toggleHints}
       checks={checks}
       docHeader=''

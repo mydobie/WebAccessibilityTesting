@@ -34,7 +34,6 @@ const Images = (): ReactElement => {
     <Template
       showHints={showHints}
       title={ROUTES.TABLES.label}
-      route={ROUTES.TABLES.path}
       toggleHints={toggleHints}
       checks={checks}
       docHeader=''
