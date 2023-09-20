@@ -1,6 +1,7 @@
 // Page rendered when url doesn't match route in App.jsx
 
 import React, { ReactElement } from 'react';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import {
   Icon1Circle,
@@ -12,6 +13,8 @@ import {
 import Crowd from '../images/noun-crowd';
 import Working from '../images/noun-working';
 import ExternalLink from '../components/ExternalLink';
+import ROUTES from '../AppRouteNames';
+import { BoxArrowUpRight } from 'react-bootstrap-icons';
 
 const iconProps = { size: '25' };
 import { Row, Col, Card, ListGroup } from 'react-bootstrap';
@@ -94,12 +97,20 @@ const GraceHopper = (/* props */): ReactElement => (
               </ListGroupItem>
               <ListGroupItem>
                 <Icon5Circle {...iconProps} title='step 5' />
-                Bookmark sample site (Coming soon)
+                Bookmark{' '}
+                <Link
+                  to={`../${ROUTES.SAMPLE.path}`}
+                  target='_blank'
+                  rel='noopener noreferrer'
+                >
+                  Sample site{' '}
+                  <BoxArrowUpRight
+                    size={15}
+                    aria-label='opens in a new window'
+                  />
+                </Link>
               </ListGroupItem>
             </StyledListGroup>
-            {/* <Card.Body>
-            <Card.Link href='#'>Card Link</Card.Link>
-            <Card.Link href='#'>Another Link</Card.Link> */}
           </Card.Body>
         </Card>
       </Col>
