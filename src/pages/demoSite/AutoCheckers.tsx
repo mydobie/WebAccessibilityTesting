@@ -1,7 +1,6 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
 import React, { ReactElement } from 'react';
 import { Row, Col, Card } from 'react-bootstrap';
-// import styled from 'styled-components';
 // import TestingAlert from '../../components/TestingAlert';
 import { RoseImage } from '../../images/SampleSVGs';
 import Credit from '../../components/Credit';
@@ -9,16 +8,9 @@ import ExternalLink from '../../components/ExternalLink';
 import Template, { useHints } from '../sampleSite/Template';
 import ROUTES from '../../AppRouteNames';
 import { checks } from '../sampleSite/AutoCheckers';
+import world from '../../images/noun-world.svg';
 
 import GraceHopperHandout from '../../docs/GraceHopperHandout';
-/*
-
-
-missing language => or actually not accurate 
-
-
-
-*/
 
 const AutoCheckers = (): ReactElement => {
   const { showHints, toggleHints } = useHints();
@@ -80,35 +72,60 @@ const AutoCheckers = (): ReactElement => {
           <div role='complementary'>
             <Card>
               <Card.Body>
-                Languages:
-                <ul>
-                  <li>
-                    <span lang='fr'>Rose</span> - French
-                  </li>
-                  <li>
-                    <span lang='es'>Rosa</span> - Spanish
-                  </li>
-                  <li>
-                    <span lang='german'>Rose</span> - German
-                  </li>
-                  <li>
-                    <span lang='la'>Rose</span> - Latin
-                  </li>
-                </ul>
+                <h2 className='h4'>{`How do you say "rose" in different languages?`}</h2>
+                <Row>
+                  <Col>
+                    <ul>
+                      <li>
+                        <span lang='fr'>Rose</span> - French
+                      </li>
+                      <li>
+                        <span lang='es'>Rosa</span> - Spanish
+                      </li>
+                      <li>
+                        <span lang='german'>Rose</span> - German
+                      </li>
+                      <li>
+                        <span lang='la'>Rose</span> - Latin
+                      </li>
+                    </ul>
+                  </Col>
+                  <Col>
+                    <img src={world} alt='' style={{ width: '100%' }} />
+                  </Col>
+                </Row>
               </Card.Body>
             </Card>
           </div>
-          <div role='complementary'>World</div>
+          <div role='complementary'>
+            <Card>
+              <Card.Body>
+                <h2 className='h4'>Rose hips</h2>
+                <Row>
+                  <Col>
+                    <p>
+                      Rose hips are used in bread and pies, jam, jelly,
+                      marmalade, syrup, soup, tea, wine, and other beverages.
+                      Rose hips can be eaten raw, like berries.
+                    </p>
+                  </Col>
+                  <Col>
+                    <img
+                      style={{ width: '100%' }}
+                      alt='Rosa rubiginosa hips'
+                      src='https://upload.wikimedia.org/wikipedia/commons/c/cd/Rosa_rubiginosa_hips.jpg'
+                    />
+                  </Col>
+                </Row>
+              </Card.Body>
+            </Card>
+          </div>
         </Col>
       </Row>
       <Credit>
         Information and images from{' '}
-        <ExternalLink href='https://en.wikipedia.org/wiki/Minnesota'>
+        <ExternalLink href='https://en.wikipedia.org/wiki/Rose'>
           Wikipedia
-        </ExternalLink>{' '}
-        and{' '}
-        <ExternalLink href='https://www.exploreminnesota.com/'>
-          Explore Minnesota
         </ExternalLink>
         .
       </Credit>
