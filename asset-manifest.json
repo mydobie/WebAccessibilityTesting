@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "./static/css/main.2c4023ed.css",
-    "main.js": "./static/js/main.7fb813fe.js",
+    "main.js": "./static/js/main.2bbd578a.js",
     "static/media/northShore.png": "./static/media/northShore.3cfad819c297710f84bc.png",
     "static/media/stateFairAttendance.png": "./static/media/stateFairAttendance.4975979257a035f0968f.png",
     "static/media/GerberaHome.jpg": "./static/media/GerberaHome.95a246b7212e7664bee4.jpg",
@@ -25,10 +25,10 @@
     "static/media/noun-minnesota.svg": "./static/media/noun-minnesota.dd13770e282c66d9102530a87477384f.svg",
     "index.html": "./index.html",
     "main.2c4023ed.css.map": "./static/css/main.2c4023ed.css.map",
-    "main.7fb813fe.js.map": "./static/js/main.7fb813fe.js.map"
+    "main.2bbd578a.js.map": "./static/js/main.2bbd578a.js.map"
   },
   "entrypoints": [
     "static/css/main.2c4023ed.css",
-    "static/js/main.7fb813fe.js"
+    "static/js/main.2bbd578a.js"
   ]
 }
