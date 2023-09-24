@@ -164,7 +164,7 @@ const Zoom = (): ReactElement => {
               waterways.
             </LandscapeOnly>
             <PortraitOnly>
-              <Alert>Change to landscape to see me</Alert>
+              <Alert>Change to portrait to see me</Alert>
             </PortraitOnly>
           </Card.Body>
         </Card>

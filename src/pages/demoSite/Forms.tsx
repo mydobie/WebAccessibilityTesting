@@ -48,9 +48,11 @@ const Forms = (): ReactElement => {
     >
       <Formik
         validationSchema={schema}
-        onSubmit={async (values) => {
-          alert(JSON.stringify(values, null, 2));
-        }}
+        onSubmit={
+          async (/*values */) => {
+            // alert(JSON.stringify(values, null, 2));
+          }
+        }
         initialValues={{
           firstName: '',
           lastName: '',

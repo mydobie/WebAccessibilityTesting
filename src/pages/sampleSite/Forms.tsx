@@ -13,7 +13,7 @@ import GraceHopperHandout from '../../docs/GraceHopperHandout';
 export const checks = [
   'Can navigate to and interact with form element',
   'Form elements have a label and remain visible',
-  'Clicking a label selects the corresponding element',
+  'Clicking a label puts focus on the corresponding element',
   'Labels accurately describe the form element',
   'Visual indicators highlight required elements',
   'Error messages or indicators are displayed near the form element',
@@ -106,13 +106,11 @@ const Forms = (): ReactElement => {
                 </Form.Group>
               </Col>
               <Col xs={2}>
-                <a href='https://commons.wikimedia.org/wiki/File:Jucy_Lucy_Cheeseburger.JPG'>
-                  <img
-                    width='128'
-                    alt='Jucy Lucy Cheeseburger'
-                    src='https://upload.wikimedia.org/wikipedia/commons/thumb/8/8d/Jucy_Lucy_Cheeseburger.JPG/128px-Jucy_Lucy_Cheeseburger.JPG'
-                  />
-                </a>
+                <img
+                  width='128'
+                  alt='Jucy Lucy Cheeseburger'
+                  src='https://upload.wikimedia.org/wikipedia/commons/thumb/8/8d/Jucy_Lucy_Cheeseburger.JPG/128px-Jucy_Lucy_Cheeseburger.JPG'
+                />
               </Col>
             </Row>
             <Row>
@@ -148,13 +146,11 @@ const Forms = (): ReactElement => {
                 </Form.Group>
               </Col>
               <Col xs={2}>
-                <a href='https://commons.wikimedia.org/wiki/File:Hotdish.jpg'>
-                  <img
-                    width='128'
-                    alt='Tater Tot Hotdish'
-                    src='https://upload.wikimedia.org/wikipedia/commons/8/80/Hotdish.jpg'
-                  />
-                </a>
+                <img
+                  width='128'
+                  alt='Tater Tot Hotdish'
+                  src='https://upload.wikimedia.org/wikipedia/commons/8/80/Hotdish.jpg'
+                />
               </Col>
             </Row>
 
@@ -186,13 +182,11 @@ const Forms = (): ReactElement => {
                 </Form.Group>
               </Col>
               <Col xs={2}>
-                <a href='https://commons.wikimedia.org/wiki/File:Ph%E1%BB%9F_v%E1%BB%8Bt_quay.jpg'>
-                  <img
-                    width='128'
-                    alt='Pho'
-                    src='https://upload.wikimedia.org/wikipedia/commons/1/16/Ph%E1%BB%9F_v%E1%BB%8Bt_quay.jpg'
-                  />
-                </a>
+                <img
+                  width='128'
+                  alt='Pho'
+                  src='https://upload.wikimedia.org/wikipedia/commons/1/16/Ph%E1%BB%9F_v%E1%BB%8Bt_quay.jpg'
+                />
               </Col>
             </Row>
             <Row>
@@ -253,13 +247,11 @@ const Forms = (): ReactElement => {
                 </TestingAlert>
               </Col>
               <Col xs={2}>
-                <a href='https://commons.wikimedia.org/wiki/File:ForkLutefisk.jpg'>
-                  <img
-                    width='128'
-                    alt='Lutefisk'
-                    src='https://upload.wikimedia.org/wikipedia/commons/thumb/6/62/ForkLutefisk.jpg/128px-ForkLutefisk.jpg'
-                  />
-                </a>
+                <img
+                  width='128'
+                  alt='Lutefisk'
+                  src='https://upload.wikimedia.org/wikipedia/commons/thumb/6/62/ForkLutefisk.jpg/128px-ForkLutefisk.jpg'
+                />
               </Col>
             </Row>
 
@@ -284,13 +276,11 @@ const Forms = (): ReactElement => {
                 </div>
               </Col>
               <Col xs={2}>
-                <a href='https://commons.wikimedia.org/wiki/File:Wildricecooked.jpg'>
-                  <img
-                    width='128'
-                    alt='Wild Rice'
-                    src='https://upload.wikimedia.org/wikipedia/commons/thumb/9/92/Wildricecooked.jpg/128px-Wildricecooked.jpg'
-                  />
-                </a>
+                <img
+                  width='128'
+                  alt='Wild Rice'
+                  src='https://upload.wikimedia.org/wikipedia/commons/thumb/9/92/Wildricecooked.jpg/128px-Wildricecooked.jpg'
+                />
               </Col>
             </Row>
 
@@ -335,13 +325,11 @@ const Forms = (): ReactElement => {
                 </div>
               </Col>
               <Col xs={2}>
-                <a href='https://commons.wikimedia.org/wiki/File:Honeycrisp-Apple.jpg'>
-                  <img
-                    width='128'
-                    alt='Honeycrisp Apple'
-                    src='https://upload.wikimedia.org/wikipedia/commons/thumb/0/07/Honeycrisp-Apple.jpg/128px-Honeycrisp-Apple.jpg'
-                  />
-                </a>
+                <img
+                  width='128'
+                  alt='Honeycrisp Apple'
+                  src='https://upload.wikimedia.org/wikipedia/commons/thumb/0/07/Honeycrisp-Apple.jpg/128px-Honeycrisp-Apple.jpg'
+                />
               </Col>
             </Row>
 
@@ -369,14 +357,12 @@ const Forms = (): ReactElement => {
                 </TestingAlert>
               </Col>
               <Col xs={2}>
-                <a href='https://www.spam.com/varieties/spam-classic'>
-                  <img
-                    className='img-fluid'
-                    src='https://www.spam.com/wp-content/uploads/2019/09/image-product_spam-classic-12oz-420x420.png'
-                    alt='SPAM Classic'
-                    width='128'
-                  />
-                </a>
+                <img
+                  className='img-fluid'
+                  src='https://www.spam.com/wp-content/uploads/2019/09/image-product_spam-classic-12oz-420x420.png'
+                  alt='SPAM Classic'
+                  width='128'
+                />
               </Col>
             </Row>
             <Button type='submit' className='mb-4'>

@@ -86,13 +86,14 @@ const GraceHopper = (/* props */): ReactElement => (
                 (Mac only){' '}
                 <ExternalLink href='https://articulate.com/support/article/How-to-Enable-Tab-Key-Navigation-on-a-Mac'>
                   Enable tab navigation
-                </ExternalLink>
+                </ExternalLink>{' '}
+                or use Chrome
               </ListGroupItem>
               <ListGroupItem>
                 <Icon4Circle {...iconProps} title='step 4' />
                 Bookmark{' '}
                 <ExternalLink href='https://docs.google.com/document/d/1cap2XjzHsKvB8JgHDAyM-5KT5_KOqGdMo87lNJ6leAU'>
-                  hand-out
+                  Hand-out
                 </ExternalLink>
               </ListGroupItem>
               <ListGroupItem>
@@ -130,7 +131,7 @@ const GraceHopper = (/* props */): ReactElement => (
           <br />
           Principal Front End Developer at Red Hat
           <br />
-          Mom, Dancer, Runner, Bath fizzy maker, Yogi <br />
+          Mom, Minnesotan, Dancer, Runner, Bath fizzy maker, Yogi <br />
           kdoberst@redhat.com or kimdobie@gmail.com
         </p>
       </Col>
