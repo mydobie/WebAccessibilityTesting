@@ -130,7 +130,7 @@ const GraceHopper = (/* props */): ReactElement => (
           <br />
           Principal Front End Developer at Red Hat
           <br />
-          Mom, Dancer, Runner, Bath fizzy maker, Yogi <br />
+          Mom, Minnesotan, Dancer, Runner, Bath fizzy maker, Yogi <br />
           kdoberst@redhat.com or kimdobie@gmail.com
         </p>
       </Col>
