@@ -1,5 +1,9 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
 /* eslint-disable @typescript-eslint/no-explicit-any */
+
+// #cdd5e1 bg color
+// 0258d9 link color
+
 import React, { PropsWithChildren, ReactElement } from 'react';
 import {
   Row,
@@ -194,18 +198,27 @@ const Template: React.FC<PropsWithChildren<Props>> = ({
               <ExternalLink buttonVariant='secondary' href={docLink(docHeader)}>
                 How to test
               </ExternalLink>
+              {helper ? (
+                <Alert
+                  variant='primary'
+                  role='none'
+                  style={{
+                    backgroundColor: '#D6DDE6',
+                    marginLeft: '-120px',
+                    marginTop: '20px',
+                    marginBottom: '-1px',
+                  }}
+                >
+                  <Row>
+                    <Col sm='auto' className='.d-none .d-sm-block'>
+                      <img src={lightBulb} alt='Learn more' />
+                    </Col>
+                    <Col>{helper}</Col>
+                  </Row>
+                </Alert>
+              ) : null}
             </CardBody>
           </Card>
-          {helper ? (
-            <Alert variant='primary'>
-              <Row>
-                <Col sm='auto' className='.d-none .d-sm-block'>
-                  <img src={lightBulb} alt='Learn more' />
-                </Col>
-                <Col>{helper}</Col>
-              </Row>
-            </Alert>
-          ) : null}
 
           <div>{children}</div>
         </Col>

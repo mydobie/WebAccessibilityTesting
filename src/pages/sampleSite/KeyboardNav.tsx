@@ -14,11 +14,13 @@ import ExternalLink from '../../components/ExternalLink';
 import GraceHopperHandout from '../../docs/GraceHopperHandout';
 
 export const checks = [
-  'You can get to and activate all interactive items with the keyboard',
-  'Items that have focus (you tabbed to them) are visible and look different',
+  'You can get to and activate all interactive items with a keyboard',
+  'Interactive items are easily identifiable without relying on color',
+  'Focused items are visually displayed on the screen',
+  'Focused items visually look different',
   'Tab order follows the flow of the page',
   'Links that open a new window/tab are marked',
-  'Links/buttons are easily identifiable without solely using color',
+  'You can skip over large sets of items (aka skip links)',
   'Link/button text makes sense and is descriptive out of context',
 ];
 
@@ -45,6 +47,23 @@ const KeyboardNavigation = (): ReactElement => {
       checks={checks}
       docHeader={GraceHopperHandout.sections.keyboard}
       bugTotal={7}
+      helper={
+        <>
+          <ul>
+            <li>
+              <ExternalLink href='https://articulate.com/support/article/How-to-Enable-Tab-Key-Navigation-on-a-Mac'>
+                Enable keyboard navigation on a Mac
+              </ExternalLink>
+            </li>
+            <li>
+              <ExternalLink href='https://www.w3.org/WAI/ARIA/apg/patterns/'>
+                ARIA Patterns
+              </ExternalLink>{' '}
+              - how different widgets should behave
+            </li>
+          </ul>
+        </>
+      }
     >
       <h2>Showy Lady Slipper</h2>
       <h3>About</h3>

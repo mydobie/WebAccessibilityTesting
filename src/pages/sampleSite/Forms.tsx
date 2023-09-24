@@ -13,7 +13,7 @@ import GraceHopperHandout from '../../docs/GraceHopperHandout';
 export const checks = [
   'Can navigate to and interact with form element',
   'Form elements have a label and remain visible',
-  'Clicking a label selects the corresponding element',
+  'Clicking a label puts focus on the corresponding element',
   'Labels accurately describe the form element',
   'Visual indicators highlight required elements',
   'Error messages or indicators are displayed near the form element',

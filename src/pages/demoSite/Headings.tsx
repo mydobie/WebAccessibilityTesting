@@ -127,24 +127,23 @@ const Headings = (): ReactElement => {
           </footer>
         </Col>
         <Col xs={4}>
-          <Card role='search' style={{ marginBottom: '20px' }}>
+          <Card
+            role='search'
+            style={{ marginBottom: '20px' }}
+            aria-label='Search for tulips'
+          >
             <Card.Body>
               <div>
-                <Form
-                  action='https://www.dutchbulbs.com/search'
-                  method='get'
-                  name='search'
-                  role='search'
+                <TestingAlert
+                  isCorrect
+                  show={showHints}
+                  popOver={
+                    'The search section is correctly marked as a "search" landmark.'
+                  }
                 >
-                  <TestingAlert
-                    isCorrect
-                    show={showHints}
-                    popOver={
-                      'The search section is correctly marked as a "search" landmark.'
-                    }
-                  >
-                    <h2 className='h5'>Search DutchBulbs.com</h2>
-                  </TestingAlert>
+                  <h2 className='h5'>Search DutchBulbs.com</h2>
+                </TestingAlert>
+                <Form action='https://www.dutchbulbs.com/search' method='get'>
                   <InputGroup>
                     <Form.Control
                       placeholder='Item Number of Keywords'

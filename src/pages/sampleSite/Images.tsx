@@ -14,6 +14,7 @@ import Monarch from '../../images/Monarch';
 import BambooIcon from '../../images/BambooIcon';
 import TextDivider from '../../images/noun-divider.png';
 import GraceHopperHandout from '../../docs/GraceHopperHandout';
+import { Link } from 'react-router-dom';
 
 export const checks = [
   'Images have appropriate alternative text',
@@ -32,6 +33,18 @@ const Images = (): ReactElement => {
       checks={checks}
       docHeader={GraceHopperHandout.sections.images}
       bugTotal={3}
+      helper={
+        <>
+          <Link
+            to={`../../${ROUTES.DEMO.path}/${ROUTES.DEMO_IMAGES.path}#image_examples`}
+            target='_blank'
+            rel='noopener noreferrer'
+          >
+            Example images
+          </Link>{' '}
+          to compare WAVE icons
+        </>
+      }
     >
       <h2>Monarch butterfly</h2>
 

@@ -10,9 +10,10 @@ import GraceHopperHandout from '../../docs/GraceHopperHandout';
 
 export const checks = [
   'Heading text describes the content underneath',
-  'No skipping levels',
-  'The page title is a H1',
-  'All elements are in an appropriate landmark (or role)',
+  'No skipping heading levels',
+  'The page title is a level 1 heading (H1)',
+  'All elements are in an appropriate landmark',
+  'Multiple landmarks of the same type have an aria label',
 ];
 
 const Headings = (): ReactElement => {
@@ -26,6 +27,13 @@ const Headings = (): ReactElement => {
       checks={checks}
       docHeader={GraceHopperHandout.sections.headings}
       bugTotal={5}
+      helper={
+        <>
+          <ExternalLink href='https://www.w3.org/WAI/ARIA/apg/practices/landmark-regions/'>
+            List of possible landmarks
+          </ExternalLink>
+        </>
+      }
     >
       <Row>
         <Col>
@@ -178,13 +186,17 @@ const Headings = (): ReactElement => {
           </p>
         </Col>
         <Col xs={4}>
-          <Card role='complementary' style={{ marginBottom: '20px' }}>
+          <Card
+            role='complementary'
+            style={{ marginBottom: '20px' }}
+            aria-label='Different loon calls'
+          >
             <Card.Body>
               <TestingAlert
                 isCorrect
                 show={showHints}
                 popOver={
-                  'The "Loon calls" section is correctly coded as a complementary landmark.'
+                  'The "Loon calls" section is correctly coded as a complementary landmark. In addition, it has a label of "Different loon calls.'
                 }
               >
                 <Card.Title as='h2'>Loon calls</Card.Title>
@@ -228,7 +240,7 @@ const Headings = (): ReactElement => {
               </audio>
             </Card.Body>
           </Card>
-          <Card role='search'>
+          <Card role='search' aria-label='State bird of Minnesota'>
             <Card.Body>
               <TestingAlert
                 isBug
