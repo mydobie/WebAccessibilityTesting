@@ -68,7 +68,7 @@ const GraceHopper = (/* props */): ReactElement => (
                 <ExternalLink href='https://wave.webaim.org/extension/'>
                   WAVE browser extension
                 </ExternalLink>
-{/*                 {' '} 
+                {/*                 {' '} 
                 (preferred) . OR Bookmark{' '}
                 <ExternalLink href='https://wave.webaim.org/'>
                   online WAVE evaluator
