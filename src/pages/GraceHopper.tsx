@@ -67,11 +67,12 @@ const GraceHopper = (/* props */): ReactElement => (
                 Install{' '}
                 <ExternalLink href='https://wave.webaim.org/extension/'>
                   WAVE browser extension
-                </ExternalLink>{' '}
+                </ExternalLink>
+{/*                 {' '} 
                 (preferred) . OR Bookmark{' '}
                 <ExternalLink href='https://wave.webaim.org/'>
                   online WAVE evaluator
-                </ExternalLink>
+                </ExternalLink>*/}
               </ListGroupItem>
               <ListGroupItem>
                 <Icon2Circle {...iconProps} title='step 2' />
